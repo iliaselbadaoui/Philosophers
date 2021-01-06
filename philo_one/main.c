@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/03 14:21:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/06 10:27:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		*take_forks(void *arg)
 	{
 		gettimeofday(&tval, NULL);
 		printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
+		// eat();
 	}
 	pthread_mutex_unlock(&mutex);
 	return (NULL);
