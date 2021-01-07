@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/06 10:27:06 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/07 11:45:06 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,30 @@ void		*take_forks(void *arg)
 
 	id  = *((int *) arg);
 	flag = 0;
-	pthread_mutex_lock(&mutex);
-	if (id && !forks[id - 1] && !forks[id])
-	{	
-		flag = 1;
-		forks[id] = 1;
-		forks[id - 1] = 1;
-	}
-	else if(!forks[g_philo_num - 1] && !forks[0])
+	while (1)
 	{
-		flag = 1;
-		forks[0] = 1;
-		forks[g_philo_num - 1] = 1;
+		pthread_mutex_lock(&mutex);
+		if (id && !forks[id - 1] && !forks[id] && !philos[id])
+		{	
+			flag = 1;
+			forks[id] = 1;
+			forks[id - 1] = 1;
+		}
+		else if(!forks[g_philo_num - 1] && !forks[0] && !philos[id])
+		{
+			flag = 1;
+			forks[0] = 1;
+			forks[g_philo_num - 1] = 1;
+		}
+		if (flag)
+		{
+			gettimeofday(&tval, NULL);
+			printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
+			// eat();
+		}
+		pthread_mutex_unlock(&mutex);
+		return (NULL);
 	}
-	if (flag)
-	{
-		gettimeofday(&tval, NULL);
-		printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
-		// eat();
-	}
-	pthread_mutex_unlock(&mutex);
 	return (NULL);
 }
 
@@ -70,10 +74,7 @@ int			main(int argc, char **argv)
 		}
 		i = 0;
 		while (i < g_philo_num)
-		{
-			pthread_join(thread[i], NULL);
-			i++;
-		}
+			pthread_join(thread[i++], NULL);
 	}
 	return (0);
 }
