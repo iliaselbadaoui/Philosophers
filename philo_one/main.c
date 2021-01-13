@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/07 11:45:06 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/13 09:35:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,38 @@
 void		*take_forks(void *arg)
 {
 	int				id;
-	int				flag;
+	int				i;
 	struct timeval	tval;
 
 	id  = *((int *) arg);
-	flag = 0;
-	while (1)
+	i = 0;
+	pthread_mutex_lock(&mutex);
+	while (i++ < g_philo_num)
 	{
-		pthread_mutex_lock(&mutex);
 		if (id && !forks[id - 1] && !forks[id] && !philos[id])
-		{	
-			flag = 1;
+		{
+			philos[id] = 1;
 			forks[id] = 1;
 			forks[id - 1] = 1;
-		}
-		else if(!forks[g_philo_num - 1] && !forks[0] && !philos[id])
-		{
-			flag = 1;
-			forks[0] = 1;
-			forks[g_philo_num - 1] = 1;
-		}
-		if (flag)
-		{
 			gettimeofday(&tval, NULL);
 			printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
-			// eat();
+			forks[id] = 0;
+			forks[id - 1] = 0;
+			break ;
 		}
-		pthread_mutex_unlock(&mutex);
-		return (NULL);
+		else if(!forks[g_philo_num - 1] && !forks[0] && !philos[0])
+		{
+			philos[0] = 1;
+			forks[0] = 1;
+			forks[g_philo_num - 1] = 1;
+			gettimeofday(&tval, NULL);
+			printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
+			forks[0] = 0;
+			forks[g_philo_num - 1] = 0;
+			break ;
+		}
 	}
+	pthread_mutex_unlock(&mutex);
 	return (NULL);
 }
 

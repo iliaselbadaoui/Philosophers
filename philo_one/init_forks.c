@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 13:28:30 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/07 11:44:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/11 17:47:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void		init_forks()
 	philos = (int *)malloc(sizeof(int) * g_philo_num);
 	while (i < g_philo_num)
 	{
-		philos[i] = forks[i] = 0;
+		philos[i] = 0;
+		forks[i] = 0;
 		i++;
 	}
 }
