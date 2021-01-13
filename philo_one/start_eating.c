@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_forks.c                                       :+:      :+:    :+:   */
+/*   start_eating.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/01 13:28:30 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/13 11:07:23 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/01/13 11:10:58 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/01/13 11:13:18 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void		init_forks(void)
+void			start_eating(int id)
 {
-	int		i;
+	struct timeval	tval;
 
-	i = 0;
-	g_forks = (int *)malloc(sizeof(int) * g_philo_num);
-	g_philos = (int *)malloc(sizeof(int) * g_philo_num);
-	while (i < g_philo_num)
-	{
-		g_philos[i] = 0;
-		g_forks[i] = 0;
-		i++;
-	}
+	gettimeofday(&tval, NULL);
+	printf("%ld %d is eating\n", tval.tv_sec, id + 1);
+	usleep(g_time_to_eat * 1000);
 }

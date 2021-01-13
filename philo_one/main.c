@@ -6,49 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/13 09:35:27 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/13 11:36:53 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-
-void		*take_forks(void *arg)
-{
-	int				id;
-	int				i;
-	struct timeval	tval;
-
-	id  = *((int *) arg);
-	i = 0;
-	pthread_mutex_lock(&mutex);
-	while (i++ < g_philo_num)
-	{
-		if (id && !forks[id - 1] && !forks[id] && !philos[id])
-		{
-			philos[id] = 1;
-			forks[id] = 1;
-			forks[id - 1] = 1;
-			gettimeofday(&tval, NULL);
-			printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
-			forks[id] = 0;
-			forks[id - 1] = 0;
-			break ;
-		}
-		else if(!forks[g_philo_num - 1] && !forks[0] && !philos[0])
-		{
-			philos[0] = 1;
-			forks[0] = 1;
-			forks[g_philo_num - 1] = 1;
-			gettimeofday(&tval, NULL);
-			printf("%ld %d has taken a fork\n", tval.tv_sec, id+1);
-			forks[0] = 0;
-			forks[g_philo_num - 1] = 0;
-			break ;
-		}
-	}
-	pthread_mutex_unlock(&mutex);
-	return (NULL);
-}
 
 int			main(int argc, char **argv)
 {
@@ -59,7 +21,7 @@ int			main(int argc, char **argv)
 	i = 0;
 	if (argc >= 5 && argc <= 6)
 	{
-		pthread_mutex_init(&mutex, NULL);
+		pthread_mutex_init(&g_mutex, NULL);
 		g_philo_num = atoi(argv[1]);
 		g_time_to_die = atoi(argv[2]);
 		g_time_to_eat = atoi(argv[3]);
@@ -73,6 +35,7 @@ int			main(int argc, char **argv)
 		{
 			ids[i] = i;
 			thread[i] = create_philo(take_forks, &(ids[i]));
+			usleep(100);
 			i++;
 		}
 		i = 0;
