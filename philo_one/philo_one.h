@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/13 11:13:23 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/14 12:54:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int				g_time_to_die;
 int				g_number_of_times_of_eat;
 
 pthread_t		create_philo(void *(func(void *arg)), int *id);
-void			init_forks();
+void			init_forks(void);
 void			*take_forks(void *arg);
 void			start_eating(int id);
+void			philo_sleep(int id);
+void			think(int id);
 #endif

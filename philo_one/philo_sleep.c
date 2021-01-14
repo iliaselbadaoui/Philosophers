@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_eating.c                                     :+:      :+:    :+:   */
+/*   philo_sleep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 11:10:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/14 17:51:50 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/01/14 12:53:22 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/01/14 12:55:18 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void			start_eating(int id)
+void			philo_sleep(int id)
 {
 	struct timeval	tval;
+
 	gettimeofday(&tval, NULL);
-	printf("%ld %d is eating\n", tval.tv_sec, id + 1);
-	usleep(g_time_to_eat);
-	if (g_forks[0] && g_forks[g_philo_num - 1] && g_philos[id])
-	{
-		g_forks[id] = 0;
-		g_forks[id - 1] = 0;
-	}
-	else if (g_forks[id] && g_forks[id - 1] && g_philos[id])
-	{
-		g_forks[0] = 0;
-		g_forks[g_philo_num - 1] = 0;
-	}
+	printf("%ld %d is sleeping\n", tval.tv_sec, id + 1);
+	usleep(g_time_to_sleep);
 }

@@ -6,11 +6,19 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/13 15:49:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/14 17:32:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+static void	init_g(char **argv)
+{
+	g_philo_num = atoi(argv[1]) * 1000;
+	g_time_to_die = atoi(argv[2]) * 1000;
+	g_time_to_eat = atoi(argv[3]) * 1000;
+	g_time_to_sleep = atoi(argv[4]) * 1000;
+}
 
 int			main(int argc, char **argv)
 {
@@ -22,24 +30,21 @@ int			main(int argc, char **argv)
 	if (argc >= 5 && argc <= 6)
 	{
 		pthread_mutex_init(&g_mutex, NULL);
-		g_philo_num = atoi(argv[1]);
-		g_time_to_die = atoi(argv[2]);
-		g_time_to_eat = atoi(argv[3]);
-		g_time_to_sleep = atoi(argv[4]);
+		init_g(argv);
 		if (argc == 6)
-			g_number_of_times_of_eat = atoi(argv[5]);
+			g_number_of_times_of_eat = atoi(argv[5]) * 1000;
 		thread = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
 		ids = (int *)malloc(sizeof(int) * g_philo_num);
 		init_forks();
-		while (i < g_philo_num)
+		while (i < g_philo_num / 1000)
 		{
 			ids[i] = i;
-			usleep(100);
 			thread[i] = create_philo(take_forks, &(ids[i]));
+			// pthread_join(thread[i], NULL);
 			i++;
 		}
 		i = 0;
-		while (i < g_philo_num)
+		while (i < g_philo_num / 1000)
 			pthread_join(thread[i++], NULL);
 	}
 	return (0);
