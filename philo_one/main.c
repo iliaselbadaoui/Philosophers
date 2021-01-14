@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/13 11:36:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:49:53 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int			main(int argc, char **argv)
 		while (i < g_philo_num)
 		{
 			ids[i] = i;
-			thread[i] = create_philo(take_forks, &(ids[i]));
 			usleep(100);
+			thread[i] = create_philo(take_forks, &(ids[i]));
 			i++;
 		}
 		i = 0;
