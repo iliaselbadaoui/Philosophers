@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 10:38:17 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/20 21:45:47 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:42:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,12 @@ void			*take_forks(void *arg)
 			}
 			pthread_mutex_unlock(&g_mutex);
 		}
-		start_eating(id);
-		philo_sleep(id);
-		think(id);
+		if (!g_died)
+		{
+			start_eating(id);
+			philo_sleep(id);
+			think(id);
+		}
 	}
 	return (NULL);
 }
