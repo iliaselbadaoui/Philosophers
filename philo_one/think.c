@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 12:28:06 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/14 12:55:13 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:25:15 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void			think(int id)
 	gettimeofday(&tval, NULL);
 	printf("%ld %d is thinking\n", tval.tv_sec, id + 1);
 	usleep(g_time_to_sleep);
+	g_philos[id] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/14 17:32:05 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/01/20 22:23:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_g(char **argv)
 {
-	g_philo_num = atoi(argv[1]) * 1000;
+	g_philo_num = atoi(argv[1]);
 	g_time_to_die = atoi(argv[2]) * 1000;
 	g_time_to_eat = atoi(argv[3]) * 1000;
 	g_time_to_sleep = atoi(argv[4]) * 1000;
@@ -23,6 +23,7 @@ static void	init_g(char **argv)
 int			main(int argc, char **argv)
 {
 	pthread_t	*thread;
+	pthread_t	supervisor;
 	int			*ids;
 	int			i;
 	
@@ -36,15 +37,16 @@ int			main(int argc, char **argv)
 		thread = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
 		ids = (int *)malloc(sizeof(int) * g_philo_num);
 		init_forks();
-		while (i < g_philo_num / 1000)
+		while (i < g_philo_num)
 		{
 			ids[i] = i;
 			thread[i] = create_philo(take_forks, &(ids[i]));
-			// pthread_join(thread[i], NULL);
 			i++;
 		}
+		pthread_create(&supervisor, NULL, supervisor_thread, (void *) thread);
+		pthread_join(supervisor, NULL);
 		i = 0;
-		while (i < g_philo_num / 1000)
+		while (i < g_philo_num)
 			pthread_join(thread[i++], NULL);
 	}
 	return (0);

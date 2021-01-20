@@ -1,30 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_forks.c                                       :+:      :+:    :+:   */
+/*   supervisor_thread.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/01 13:28:30 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/19 20:25:07 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/01/19 20:06:23 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/01/20 22:23:32 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void		init_forks(void)
+static void		kill_philosophers(pthread_t		*thread)
 {
 	int		i;
 
 	i = 0;
-	g_forks = (int *)malloc(sizeof(int) * g_philo_num);
-	g_philos = (int *)malloc(sizeof(int) * g_philo_num);
-	g_times = (int *)malloc(sizeof(int) * g_philo_num);
 	while (i < g_philo_num)
 	{
-		g_philos[i] = 0;
-		g_forks[i] = 0;
-		g_times[i] = 0;
+		pthread_detach(thread[i]);
 		i++;
 	}
+}
+
+void			*supervisor_thread(void *ptr)
+{
+	int				i;
+	pthread_t		*thread;
+	struct timeval	tval;
+
+	thread = (pthread_t *)ptr;
+	while (!g_died)
+	{
+		usleep(g_time_to_die);
+		i = 0;
+		while (i < g_philo_num)
+		{
+			if(!g_times[i])
+			{
+				g_died = 1;
+				gettimeofday(&tval, NULL);
+				printf("%ld %d died\n", tval.tv_sec, i + 1);
+				break ;
+			}
+			i++;
+		}
+	}
+	kill_philosophers(thread);
+	return (NULL);
 }
