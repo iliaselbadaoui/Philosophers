@@ -9,7 +9,7 @@ Philo_one test
 - Do not test with time_to_die or time_to_eat or time_to_sleep under 60 ms
 - Test with 5 800 200 200, no one should die!
 - Test with 4 410 200 200, no one should die!
-- Test with 4 310 200 100å, a philosopher should die!
+- Test with 4 310 200 100, a philosopher should die!
 - Test with 2 philosophers and check the different times (a death delayed by more than 10 ms is unacceptable).
 - Test your own values to check all the rules. Check if a philosopher dies at the right time, if they don't steal forks, etc.
 Philo_two code
