@@ -6,12 +6,17 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/19 20:36:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 11:08:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_ONE_H
 # define PHILO_ONE_H
+#define FORK_TAKEN 0
+# define EATING 1
+# define SLEEPING 2
+# define THINKING 3
+# define DIED 4
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
@@ -35,5 +40,8 @@ void			*take_forks(void *arg);
 void			start_eating(int id);
 void			philo_sleep(int id);
 void			*supervisor_thread(void *ptr);
+void			ft_putnbr(int n);
+void			println(char *str);
+void			philo_state(int state, int philo_id);
 void			think(int id);
 #endif
