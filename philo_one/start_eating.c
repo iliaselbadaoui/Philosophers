@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:10:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 09:16:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 12:51:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void			start_eating(int id)
 {
-	struct timeval	tval;
-
-	gettimeofday(&tval, NULL);
-	printf("%ld %d is eating\n", tval.tv_sec + tval.tv_usec, id + 1);
+	philo_state(EATING, id + 1);
 	usleep(g_time_to_eat);
 	g_philos[id] = 1;
 	g_times[id]++;

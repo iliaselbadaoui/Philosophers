@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 12:28:06 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/20 22:25:15 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 12:52:02 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 void			think(int id)
 {
-	struct timeval	tval;
-
-	gettimeofday(&tval, NULL);
-	printf("%ld %d is thinking\n", tval.tv_sec, id + 1);
+	philo_state(THINKING, id + 1);
 	usleep(g_time_to_sleep);
 	g_philos[id] = 0;
 }
