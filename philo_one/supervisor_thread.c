@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:06:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/20 22:23:32 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 15:57:01 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			*supervisor_thread(void *ptr)
 			{
 				g_died = 1;
 				gettimeofday(&tval, NULL);
-				printf("%ld %d died\n", tval.tv_sec, i + 1);
+				philo_state(DIED, i + 1);
 				break ;
 			}
 			i++;

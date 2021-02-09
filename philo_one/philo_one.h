@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 11:08:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 16:03:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/time.h>
 
 pthread_mutex_t	g_mutex;
+pthread_mutex_t	g_protect;
 int				*g_forks;
 int				*g_philos;
 int				*g_times;

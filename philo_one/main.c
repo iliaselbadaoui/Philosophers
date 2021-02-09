@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/20 22:23:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 16:04:37 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	init_g(char **argv)
 {
+	pthread_mutex_init(&g_mutex, NULL);
+	pthread_mutex_init(&g_protect, NULL);
 	g_philo_num = atoi(argv[1]);
 	g_time_to_die = atoi(argv[2]) * 1000;
 	g_time_to_eat = atoi(argv[3]) * 1000;
@@ -30,7 +32,6 @@ int			main(int argc, char **argv)
 	i = 0;
 	if (argc >= 5 && argc <= 6)
 	{
-		pthread_mutex_init(&g_mutex, NULL);
 		init_g(argv);
 		if (argc == 6)
 			g_number_of_times_of_eat = atoi(argv[5]) * 1000;

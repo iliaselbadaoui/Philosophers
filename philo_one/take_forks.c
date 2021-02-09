@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 10:38:17 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 12:41:58 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/09 15:55:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			*take_forks(void *arg)
 				g_forks[id] = 1;
 				g_forks[id - 1] = 1;
 				gettimeofday(&tval, NULL);
-				printf("%ld %d has taken a fork\n", tval.tv_sec, id + 1);
+				philo_state(FORK_TAKEN, id + 1);
 				flag = 1;
 			}
 			else if(!id && !g_forks[g_philo_num - 1] && !g_forks[0] && !g_philos[id])
