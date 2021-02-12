@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 16:03:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/12 17:46:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void			*take_forks(void *arg);
 void			start_eating(int id);
 void			philo_sleep(int id);
 void			*supervisor_thread(void *ptr);
-void			ft_putnbr(int n);
+void			ft_putnbr(long n);
+int				ft_atoi(char *number);
 void			println(char *str);
 void			philo_state(int state, int philo_id);
 void			think(int id);

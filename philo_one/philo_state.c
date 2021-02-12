@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 16:43:46 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/12 17:53:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void			philo_state(int state, int philo_id)
 	int				done_printing;
 
 	done_printing = 0;
+	gettimeofday(&tval, NULL);
 	while (!done_printing)
 	{
 		pthread_mutex_lock(&g_protect);
 		done_printing = 1;
-		gettimeofday(&tval, NULL);
-		ft_putnbr(tval.tv_sec);
+		ft_putnbr(tval.tv_sec * 1000 + tval.tv_usec / 1000);
 		println(" ");
 		ft_putnbr(philo_id);
 		if (state == FORK_TAKEN)

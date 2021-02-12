@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putnbr.c                                           :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 09:51:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/12 17:18:25 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/12 17:23:47 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/02/12 17:51:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-static void		ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-void			ft_putnbr(long	n)
-{
-	long		nb;
 
-	nb = n;
-	if (n < 0)
+int				ft_atoi(char *number)
+{
+	int		result;
+	int		sign;
+
+	if (!number)
+		return (0);
+	result = 0;
+	while (*number == ' ')
+		number++;
+	sign = 1;
+	if (*number == '-')
 	{
-		ft_putchar('-');
-		nb = n * -1;
+		number++;
+		sign = -1;
 	}
-	if (nb > 10)
+	if (*number == '+')
+		number++;
+	while (*number >= '0' && *number <= '9')
 	{
-		ft_putnbr((nb / 10));
-		ft_putchar((nb % 10) + '0');
+		result *= 10;
+		result += *number - '0';
+		number++;
 	}
-	else
-		ft_putchar((nb + '0'));
+	return (result * sign);
 }

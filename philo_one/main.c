@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 16:04:37 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/12 17:49:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	init_g(char **argv)
 {
 	pthread_mutex_init(&g_mutex, NULL);
 	pthread_mutex_init(&g_protect, NULL);
-	g_philo_num = atoi(argv[1]);
-	g_time_to_die = atoi(argv[2]) * 1000;
-	g_time_to_eat = atoi(argv[3]) * 1000;
-	g_time_to_sleep = atoi(argv[4]) * 1000;
+	g_philo_num = ft_atoi(argv[1]);
+	g_time_to_die = ft_atoi(argv[2]) * 1000;
+	g_time_to_eat = ft_atoi(argv[3]) * 1000;
+	g_time_to_sleep = ft_atoi(argv[4]) * 1000;
 }
 
 int			main(int argc, char **argv)
@@ -34,7 +34,7 @@ int			main(int argc, char **argv)
 	{
 		init_g(argv);
 		if (argc == 6)
-			g_number_of_times_of_eat = atoi(argv[5]) * 1000;
+			g_number_of_times_of_eat = ft_atoi(argv[5]) * 1000;
 		thread = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
 		ids = (int *)malloc(sizeof(int) * g_philo_num);
 		init_forks();
