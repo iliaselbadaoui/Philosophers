@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/12 17:53:05 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:53:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ void			philo_state(int state, int philo_id)
 	while (!done_printing)
 	{
 		pthread_mutex_lock(&g_protect);
-		done_printing = 1;
 		ft_putnbr(tval.tv_sec * 1000 + tval.tv_usec / 1000);
 		println(" ");
+		done_printing = 1;
 		ft_putnbr(philo_id);
 		if (state == FORK_TAKEN)
-			println(" has taken a fork\n");
+			println("\033[0;34m has taken a fork\033[0m\n");
 		else if (state == EATING)
-			println(" is eating\n");
+			println("\033[0;32m is eating\033[0m\n");
 		else if (state == SLEEPING)
-			println(" is sleeping\n");
+			println("\033[0;35m is sleeping\033[0m\n");
 		else if (state == THINKING)
-			println(" is thinking\n");
+			println("\033[0;36m is thinking\033[0m\n");
 		else if (state == DIED)
-			println(" died\n");
+			println("\033[0;31m died\033[0m\n");
 		pthread_mutex_unlock(&g_protect);
 	}
 }

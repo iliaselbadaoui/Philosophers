@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/12 17:46:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:17:30 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@
 
 pthread_mutex_t	g_mutex;
 pthread_mutex_t	g_protect;
+pthread_t		*g_thread;
 int				*g_forks;
 int				*g_philos;
 int				*g_times;
+int				*g_times_compare;
+int				*g_ids;
 int				g_philo_num;
 int				g_time_to_eat;
 int				g_time_to_sleep;
@@ -45,5 +48,7 @@ void			ft_putnbr(long n);
 int				ft_atoi(char *number);
 void			println(char *str);
 void			philo_state(int state, int philo_id);
+void			kill_philosophers(pthread_t		*thread);
 void			think(int id);
+void			frees(void);
 #endif

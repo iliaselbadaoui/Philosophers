@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:06:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/09 15:57:01 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/13 11:49:00 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static void		kill_philosophers(pthread_t		*thread)
+void		kill_philosophers(pthread_t		*thread)
 {
 	int		i;
 
@@ -39,11 +39,13 @@ void			*supervisor_thread(void *ptr)
 		{
 			if(!g_times[i])
 			{
+				
 				g_died = 1;
 				gettimeofday(&tval, NULL);
 				philo_state(DIED, i + 1);
 				break ;
 			}
+			g_times_compare[i]++;
 			i++;
 		}
 	}
