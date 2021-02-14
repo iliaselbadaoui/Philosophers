@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/13 11:17:30 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/14 10:37:26 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 pthread_mutex_t	g_mutex;
 pthread_mutex_t	g_protect;
+pthread_mutex_t	*g_eating;
 pthread_t		*g_thread;
 int				*g_forks;
 int				*g_philos;

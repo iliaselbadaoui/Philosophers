@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:10:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/13 11:47:29 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/14 12:25:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void			start_eating(int id)
 {
 	philo_state(EATING, id + 1);
+	pthread_mutex_lock(&g_eating[id]);
 	usleep(g_time_to_eat);
-	g_philos[id] = 1;
 	g_times[id]++;
+	g_philos[id] = 1;
+	pthread_mutex_unlock(&g_eating[id]);
 	pthread_mutex_lock(&g_mutex);
 	if (id && g_forks[id] && g_forks[id - 1] && g_philos[id])
 	{

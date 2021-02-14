@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:06:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/13 11:49:00 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/14 14:45:07 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void			*supervisor_thread(void *ptr)
 {
 	int				i;
 	pthread_t		*thread;
-	struct timeval	tval;
 
 	thread = (pthread_t *)ptr;
 	while (!g_died)
@@ -37,15 +36,16 @@ void			*supervisor_thread(void *ptr)
 		i = 0;
 		while (i < g_philo_num)
 		{
-			if(!g_times[i])
+			pthread_mutex_lock(&g_eating[i]);
+			if(g_times[i] == g_times_compare[i])
 			{
-				
 				g_died = 1;
-				gettimeofday(&tval, NULL);
 				philo_state(DIED, i + 1);
+				pthread_mutex_unlock(&g_eating[i]);
 				break ;
 			}
 			g_times_compare[i]++;
+			pthread_mutex_unlock(&g_eating[i]);
 			i++;
 		}
 	}
