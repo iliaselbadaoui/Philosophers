@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/13 10:38:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/14 20:14:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_g(char **argv)
 {
 	pthread_mutex_init(&g_mutex, NULL);
-	pthread_mutex_init(&g_protect, NULL);
+	pthread_mutex_init(&g_protect_output, NULL);
 	g_philo_num = ft_atoi(argv[1]);
 	g_time_to_die = ft_atoi(argv[2]) * 1000;
 	g_time_to_eat = ft_atoi(argv[3]) * 1000;

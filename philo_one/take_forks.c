@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 10:38:17 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/13 11:45:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/16 17:05:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void			*take_forks(void *arg)
 		while (!flag && !g_died)
 		{
 			pthread_mutex_lock(&g_mutex);
-			if (id && !g_forks[id - 1] && !g_forks[id] && !g_philos[id])
+			if (id && !g_forks[id - 1] && !g_forks[id] && g_times[id] == g_times_compare[id])
 				help2(id, &flag);
-			else if(!id && !g_forks[g_philo_num - 1] && !g_forks[0] && !g_philos[id])
+			else if(!id && !g_forks[g_philo_num - 1] && !g_forks[0] && g_times[id] == g_times_compare[id])
 				help(id, &flag);
 			pthread_mutex_unlock(&g_mutex);
 		}

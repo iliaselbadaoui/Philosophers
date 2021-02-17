@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 08:46:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/13 09:33:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/14 20:14:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void			frees(void)
 	free(g_philos);
 	free(g_times);
 	pthread_mutex_destroy(&g_mutex);
-	pthread_mutex_destroy(&g_protect);
+	pthread_mutex_destroy(&g_protect_output);
 }
