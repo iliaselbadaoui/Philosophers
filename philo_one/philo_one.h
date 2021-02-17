@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/15 11:06:37 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/17 14:32:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				ft_atoi(char *number);
 void			println(char *str);
 void			philo_state(int state, int philo_id);
 void			kill_philosophers(pthread_t		*thread);
+void			eating_times_supervisor();
 void			think(int id);
 void			frees(void);
 #endif
