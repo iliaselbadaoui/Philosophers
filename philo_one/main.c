@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/14 20:14:27 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:14:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,29 @@ static void	init_g(char **argv)
 	g_number_of_times_of_eat = -1;
 }
 
+static void	help(pthread_t *death_supervisor,
+pthread_t *eating_supervisor, int *i)
+{
+	pthread_create(death_supervisor, NULL,
+	supervisor_thread, (void *)g_thread);
+	pthread_create(eating_supervisor, NULL, eating_times_supervisor, NULL);
+	pthread_join(*death_supervisor, NULL);
+	pthread_join(*eating_supervisor, NULL);
+	*i = 0;
+}
+
 int			main(int argc, char **argv)
 {
-	pthread_t	supervisor;
+	pthread_t	death_supervisor;
+	pthread_t	eating_supervisor;
 	int			i;
-	
+
 	i = 0;
 	if (argc >= 5 && argc <= 6)
 	{
 		init_g(argv);
 		if (argc == 6)
-			g_number_of_times_of_eat = ft_atoi(argv[5]) * 1000;
+			g_number_of_times_of_eat = ft_atoi(argv[5]);
 		g_thread = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
 		g_ids = (int *)malloc(sizeof(int) * g_philo_num);
 		init_forks();
@@ -43,9 +55,7 @@ int			main(int argc, char **argv)
 			g_thread[i] = create_philo(take_forks, &(g_ids[i]));
 			i++;
 		}
-		pthread_create(&supervisor, NULL, supervisor_thread, (void *) g_thread);
-		pthread_join(supervisor, NULL);
-		i = 0;
+		help(&death_supervisor, &eating_supervisor, &i);
 		while (i < g_philo_num)
 			pthread_join(g_thread[i++], NULL);
 	}

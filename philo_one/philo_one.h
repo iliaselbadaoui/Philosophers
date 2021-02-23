@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/17 14:32:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/23 19:15:33 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_ONE_H
 # define PHILO_ONE_H
-#define FORK_TAKEN 0
+# define FORK_TAKEN 0
 # define EATING 1
 # define SLEEPING 2
 # define THINKING 3
@@ -32,6 +32,7 @@ int				*g_philos;
 int				*g_times;
 int				*g_times_compare;
 int				*g_ids;
+int				g_all_done_eating;
 int				g_philo_num;
 int				g_time_to_eat;
 int				g_time_to_sleep;
@@ -50,7 +51,7 @@ int				ft_atoi(char *number);
 void			println(char *str);
 void			philo_state(int state, int philo_id);
 void			kill_philosophers(pthread_t		*thread);
-void			eating_times_supervisor();
+void			*eating_times_supervisor(void *arg);
 void			think(int id);
 void			frees(void);
 #endif
