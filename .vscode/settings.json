@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"philo_two.h": "c",
+		"philo_one.h": "c"
+	}
+}

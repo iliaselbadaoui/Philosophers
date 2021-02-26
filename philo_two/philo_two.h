@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one.h                                        :+:      :+:    :+:   */
+/*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/24 10:28:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 11:31:53 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <semaphore.h>
 # include <unistd.h>
 # include <sys/time.h>
 
-pthread_mutex_t	g_mutex;
-pthread_mutex_t	g_protect_output;
-pthread_mutex_t	*g_eating;
+sem_t			*g_semaphore;
+sem_t			*g_protect_output;
+sem_t			**g_eating;
 pthread_t		*g_thread;
 int				*g_forks;
 int				*g_philos;
