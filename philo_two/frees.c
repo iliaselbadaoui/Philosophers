@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 08:46:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/25 17:37:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:01:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void			frees(void)
 	free(g_times);
 	sem_unlink("SEMAPHORE");
 	sem_unlink("OUTPUT_PROTECTION");
-	sem_unlink("EATING");
+	// sem_unlink("EATING");
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 20:06:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 11:45:01 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:52:07 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,13 @@ void			*supervisor_thread(void *ptr)
 		i = 0;
 		while (i < g_philo_num)
 		{
-			sem_wait(g_eating[i]);
 			if (g_times[i] == g_times_compare[i])
 			{
 				g_died = 1;
 				philo_state(DIED, i + 1);
-				sem_post(g_eating[i]);
 				break ;
 			}
 			g_times_compare[i]++;
-			sem_post(g_eating[i]);
 			i++;
 		}
 	}

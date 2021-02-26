@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 11:10:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 11:44:57 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:51:49 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void			start_eating(int id)
 {
 	philo_state(EATING, id + 1);
-	sem_wait(g_eating[id]);
 	usleep(g_time_to_eat);
 	g_times[id]++;
 	g_philos[id] = 1;
-	sem_post(g_eating[id]);
 	sem_wait(g_semaphore);
 	if (id && g_forks[id] && g_forks[id - 1] && g_times[id] >
 	g_times_compare[id])

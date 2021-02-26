@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 11:31:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:52:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <string.h>
 # include <unistd.h>
 # include <sys/time.h>
 
 sem_t			*g_semaphore;
 sem_t			*g_protect_output;
-sem_t			**g_eating;
+// sem_t			**g_eating;
 pthread_t		*g_thread;
 int				*g_forks;
 int				*g_philos;
@@ -52,6 +53,7 @@ int				ft_atoi(char *number);
 void			println(char *str);
 void			philo_state(int state, int philo_id);
 void			kill_philosophers(pthread_t		*thread);
+char			*ft_strjoin(char const *s1, char const *s2);
 void			*eating_times_supervisor(void *arg);
 void			think(int id);
 void			frees(void);

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/24 21:13:30 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/02/26 19:06:54 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_g(char **argv)
 {
-	g_semaphore = sem_open("SEMAPHORE", O_CREAT);
-	g_protect_output = sem_open("OUTPUT_PROTECTION", O_CREAT);
+	g_semaphore = sem_open("SEMAPHORE", O_CREAT, S_IRWXU, 1);
+	g_protect_output = sem_open("OUTPUT_PROTECTION", O_CREAT, S_IRWXU, 1);
 	g_philo_num = ft_atoi(argv[1]);
 	g_time_to_die = ft_atoi(argv[2]) * 1000;
 	g_time_to_eat = ft_atoi(argv[3]) * 1000;
