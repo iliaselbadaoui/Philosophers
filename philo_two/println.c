@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 10:48:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/24 10:25:39 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/28 14:54:32 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/02/28 15:04:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void		println(char *str)
+void			println(char *str)
 {
 	while (*str)
 	{

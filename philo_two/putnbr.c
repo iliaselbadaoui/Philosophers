@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 09:51:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/24 10:25:47 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/28 14:53:49 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/02/28 14:53:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include <philo_two.h>
 
 static void		ft_putchar(char c)
 {
