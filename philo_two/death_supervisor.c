@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers_manager.c                             :+:      :+:    :+:   */
+/*   death_supervisor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 18:17:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/03 19:01:59 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/03 19:19:48 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/03 21:34:35 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void			*philosophers_manager(void *id_arg)
+void			*death_supervisor()
 {
-	int		*id;
+	int				i;
 
-	id = (int *) id_arg;
-	while (!g_died)
+	while (!g_died && !g_done_eating)
 	{
-		take_forks(*id);
-		eat(*id);
-		philo_sleep(*id);
-		think(*id);
+		usleep(g_time_to_die);
+		i = 0;
+		while (i < g_philo_num)
+		{
+			if (!sem_wait(g_eating[i]))
+			{
+				if (g_eating_times[i] == g_eating_times_count[i])
+				{
+					g_died = 1;
+					philo_state(DIED, i + 1);
+					sem_post(g_eating[i]);
+					break ;
+				}
+				g_eating_times_count[i]++;
+				sem_post(g_eating[i]);
+			}
+			i++;
+		}
 	}
+	kill_philosophers();
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:32:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/03 18:47:35 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/03 20:40:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,16 @@ sem_t			**g_eating;
 t_string		*g_forks_names;
 t_string		*g_eating_names;
 pthread_t		*g_philosopers;
+pthread_t		g_death_supervisor;
+pthread_t		g_eating_supervisor;
 int				g_philo_num;
 int				g_time_to_eat;
 int				g_time_to_sleep;
 int				g_time_to_die;
 int				g_number_of_times_of_eat;
 int				g_died;
+int				*g_eating_times;
+int				*g_eating_times_count;
 int				*g_ids;
 int				*g_cycles;
 int				g_done_eating;
@@ -54,4 +58,6 @@ t_string		sema_name_gen();
 void			think(int id);
 void			eat(int id);
 void			philo_sleep(int id);
+void			*death_supervisor();
+void			kill_philosophers();
 #endif

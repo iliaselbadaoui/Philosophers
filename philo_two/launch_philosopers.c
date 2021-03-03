@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 15:35:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/03 18:48:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/03 21:32:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void			launch_philosophers()
 		pthread_create(&g_philosopers[i], NULL, philosophers_manager, &g_ids[i]);
 		i++;
 	}
+	pthread_create(&g_death_supervisor, NULL, death_supervisor, NULL);
+	pthread_join(g_death_supervisor, NULL);
 	i = 0;
 	while (i < g_philo_num)
 	{
