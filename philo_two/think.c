@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putnbr.c                                           :+:      :+:    :+:   */
+/*   think.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 14:53:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/28 15:10:40 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/03/03 17:07:47 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/03 18:37:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-static void		ft_putchar(char c)
+void			think(int id)
 {
-	write(1, &c, 1);
-}
-
-void			ft_putnbr(long n)
-{
-	long		nb;
-
-	nb = n;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		nb = n * -1;
-	}
-	if (nb > 10)
-	{
-		ft_putnbr((nb / 10));
-		ft_putchar((nb % 10) + '0');
-	}
-	else
-		ft_putchar((nb + '0'));
+	philo_state(THINKING, id + 1);
+	g_cycles[id] = 0;
 }

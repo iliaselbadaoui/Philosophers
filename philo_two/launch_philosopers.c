@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putnbr.c                                           :+:      :+:    :+:   */
+/*   launch_philosopers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 14:53:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/28 15:10:40 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/28 15:35:58 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/03 18:48:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-static void		ft_putchar(char c)
+void			launch_philosophers()
 {
-	write(1, &c, 1);
-}
+	int		i;
 
-void			ft_putnbr(long n)
-{
-	long		nb;
-
-	nb = n;
-	if (n < 0)
+	i = 0;
+	while (i < g_philo_num)
 	{
-		ft_putchar('-');
-		nb = n * -1;
+		g_ids[i] = i;
+		pthread_create(&g_philosopers[i], NULL, philosophers_manager, &g_ids[i]);
+		i++;
 	}
-	if (nb > 10)
+	i = 0;
+	while (i < g_philo_num)
 	{
-		ft_putnbr((nb / 10));
-		ft_putchar((nb % 10) + '0');
+		pthread_join(g_philosopers[i], NULL);
+		i++;
 	}
-	else
-		ft_putchar((nb + '0'));
 }

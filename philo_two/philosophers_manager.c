@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putnbr.c                                           :+:      :+:    :+:   */
+/*   philosophers_manager.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/28 14:53:49 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/28 15:10:40 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/02/28 18:17:25 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/03/03 18:59:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-static void		ft_putchar(char c)
+void			*philosophers_manager(void *id_arg)
 {
-	write(1, &c, 1);
-}
+	int		*id;
 
-void			ft_putnbr(long n)
-{
-	long		nb;
-
-	nb = n;
-	if (n < 0)
+	id = (int *) id_arg;
+	while (!g_died)
 	{
-		ft_putchar('-');
-		nb = n * -1;
+		take_forks(*id);
+		eat(*id);
+		philo_sleep(*id);
+		think(*id);
 	}
-	if (nb > 10)
-	{
-		ft_putnbr((nb / 10));
-		ft_putchar((nb % 10) + '0');
-	}
-	else
-		ft_putchar((nb + '0'));
+	
+	return (NULL);
 }
