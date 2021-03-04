@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 12:00:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/03 19:03:52 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/04 19:21:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@ static int		help_take_forks(int id)
 {
 	if (id == g_philo_num - 1)
 	{
-		if(sem_wait(g_forks[0]) || sem_wait(g_forks[g_philo_num - 1]))
-		{
-			sem_post(g_protect_forks);
-			return (0);
-		}
+		sem_wait(g_forks[0]);
+		sem_wait(g_forks[g_philo_num - 1]);
 	}
 	else
 	{
-		if(sem_wait(g_forks[id]) || sem_wait(g_forks[id + 1]))
-		{
-			sem_post(g_protect_forks);
-			return (0);
-		}
+		sem_wait(g_forks[id]);
+		sem_wait(g_forks[id + 1]);
 	}
 	return (1);
 }
@@ -46,7 +40,6 @@ void			take_forks(int id)
 				continue ;
 		philo_state(FORK_TAKEN, id + 1);
 		done = 1;
-		g_cycles[id] = 1;
 		sem_post(g_protect_forks);
 	}
 }

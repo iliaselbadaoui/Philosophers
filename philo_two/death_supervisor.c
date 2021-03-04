@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 19:19:48 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/03 21:34:35 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/04 17:25:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,16 @@ void			*death_supervisor()
 		i = 0;
 		while (i < g_philo_num)
 		{
-			if (!sem_wait(g_eating[i]))
+			sem_wait(g_eating[i]);
+			if (g_eating_times[i] == g_eating_times_count[i])
 			{
-				if (g_eating_times[i] == g_eating_times_count[i])
-				{
-					g_died = 1;
-					philo_state(DIED, i + 1);
-					sem_post(g_eating[i]);
-					break ;
-				}
-				g_eating_times_count[i]++;
+				philo_state(DIED, i + 1);
+				g_died = 1;
 				sem_post(g_eating[i]);
+				break ;
 			}
+			g_eating_times_count[i]++;
+			sem_post(g_eating[i]);
 			i++;
 		}
 	}
