@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:32:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/04 16:49:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/05 11:55:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ static int		error_handler(int argc, t_string *argv)
 		return (0);
 	}
 	g_philosopers = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
-	g_forks_names = (t_string *)malloc(sizeof(t_string) * g_philo_num);
 	g_eating_names = (t_string *)malloc(sizeof(t_string) * g_philo_num);
-	g_forks = (sem_t **)malloc(sizeof(sem_t * ) * g_philo_num);
 	g_eating = (sem_t **)malloc(sizeof(sem_t * ) * g_philo_num);
 	return (1);
 }
@@ -51,13 +49,10 @@ static void		initializer()
 	g_ids = (int *)malloc(sizeof(int) * g_philo_num);
 	sem_unlink("OUTPUT_PROTECT");
 	g_output = sem_open("OUTPUT_PROTECT", O_CREAT, S_IRWXU, 1);
-	sem_unlink("FORKS_PROTECT");
-	g_protect_forks = sem_open("FORKS_PROTECT", O_CREAT, S_IRWXU, 1);
+	sem_unlink("FORKS_SEMA");
+	g_forks = sem_open("FORKS_SEMA", O_CREAT, S_IRWXU, g_philo_num);
 	while (i < g_philo_num)
-	{
-		g_forks_names[i] = sema_name_gen();
-		sem_unlink(g_forks_names[i]);
-		g_forks[i] = sem_open(g_forks_names[i], O_CREAT, S_IRWXU, 1);
+	{	
 		g_eating_names[i] = sema_name_gen();
 		sem_unlink(g_eating_names[i]);
 		g_eating[i] = sem_open(g_eating_names[i], O_CREAT, S_IRWXU, 1);

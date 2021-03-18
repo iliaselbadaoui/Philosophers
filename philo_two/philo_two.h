@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:32:12 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/03 20:40:57 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/05 11:55:12 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@
 typedef char	*t_string;
 
 sem_t			*g_output;
-sem_t			*g_protect_forks;
-sem_t			**g_forks;
+sem_t			*g_forks;
 sem_t			**g_eating;
-t_string		*g_forks_names;
 t_string		*g_eating_names;
 pthread_t		*g_philosopers;
 pthread_t		g_death_supervisor;

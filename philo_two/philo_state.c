@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 18:18:50 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/28 20:13:23 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/04 19:40:14 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void			philo_state(int state, int philo_id)
 	gettimeofday(&tval, NULL);
 	while (!done_printing)
 	{
-		if (sem_wait(g_output))
-			return;
+		sem_wait(g_output);
 		ft_putnbr(tval.tv_sec * 1000 + tval.tv_usec / 1000);
 		println(" ");
 		done_printing = 1;

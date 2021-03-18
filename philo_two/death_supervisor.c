@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 19:19:48 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/04 17:25:47 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/03/05 10:24:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void			*death_supervisor()
 				sem_post(g_eating[i]);
 				break ;
 			}
-			g_eating_times_count[i]++;
 			sem_post(g_eating[i]);
+			g_eating_times_count[i]++;
 			i++;
 		}
 	}
