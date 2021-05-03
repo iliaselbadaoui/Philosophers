@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 13:32:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/03 09:32:28 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:33:44 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void		initializer()
 	g_ids = (int *)malloc(sizeof(int) * g_philo_num);
 	sem_unlink("OUTPUT_PROTECT");
 	g_output = sem_open("OUTPUT_PROTECT", O_CREAT, S_IRWXU, 1);
+	sem_unlink("FORKS_PROTECT");
+	g_protect = sem_open("FORKS_PROTECT", O_CREAT, S_IRWXU, 1);
 	sem_unlink("FORKS_SEMA");
 	g_forks = sem_open("FORKS_SEMA", O_CREAT, S_IRWXU, g_philo_num);
 	while (i < g_philo_num)

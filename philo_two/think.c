@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 17:07:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/03 10:38:00 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:53:47 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void			think(int id)
 {
+	if (g_died)
+		return ;
 	philo_state(THINKING, id + 1);
-	g_cycles[id] = 0;
+	g_cycles[id] = 1;
 }
