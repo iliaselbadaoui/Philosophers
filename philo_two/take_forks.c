@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 12:00:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/03/05 12:09:49 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/03 10:55:02 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@ void			take_forks(int id)
 	while (!done)
 	{
 		if (!g_cycles[id])
-			if (!sem_wait(g_forks) && !sem_wait(g_forks))
+			if (!sem_wait(g_forks))
 			{
-				philo_state(FORK_TAKEN, id + 1);
-				done = 1;
+				if (!sem_wait(g_forks))
+				{
+					philo_state(FORK_TAKEN, id + 1);
+					done = 1;
+				}
+				else
+					sem_post(g_forks);
 			}
 	}
 }
