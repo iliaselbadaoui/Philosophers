@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 10:38:17 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 17:27:46 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/06 10:41:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ void			*take_forks(void *arg)
 		while (!flag && !g_died)
 		{
 			sem_wait(g_protect_forks);
-			if (!sem_wait(g_forks) && !sem_wait(g_forks))
-			{
-				philo_state(FORK_TAKEN, id + 1);
-				flag = 1;
-			}
+			sem_wait(g_forks);
+			sem_wait(g_forks);
+			philo_state(FORK_TAKEN, id + 1);
+			flag = 1;
 			sem_post(g_protect_forks);
 		}
 		if (!g_died)
