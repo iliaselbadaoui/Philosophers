@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:23:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 12:18:30 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:41:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 int				ft_atoi(char *number)
 {

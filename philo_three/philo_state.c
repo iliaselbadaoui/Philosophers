@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 14:12:18 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:56:03 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void			philo_state(int state, int philo_id)
 {

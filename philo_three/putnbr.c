@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 09:51:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 12:19:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:56:19 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 static void		ft_putchar(char c)
 {

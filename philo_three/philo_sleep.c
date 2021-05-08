@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 12:53:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 16:48:06 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:55:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void			philo_sleep(int id)
 {

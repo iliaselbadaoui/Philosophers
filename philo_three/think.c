@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 12:28:06 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 12:30:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:56:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void			think(int id)
 {

@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 08:46:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 14:18:04 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:41:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void			frees(void)
 {

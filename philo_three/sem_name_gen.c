@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 13:07:58 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 13:08:14 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:56:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo_two.h"
+# include "philo_three.h"
 
 static int		integer_length(int nb)
 {

@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:30:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 12:18:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:41:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void			*eating_times_supervisor(void *arg)
 {

@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/06 16:02:07 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 15:40:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 static void	init_g(char **argv)
 {
@@ -54,6 +54,7 @@ int			main(int argc, char **argv)
 {
 	pthread_t	death_supervisor;
 	pthread_t	eating_supervisor;
+	int			*philos;
 	int			i;
 
 	i = 0;
@@ -68,9 +69,11 @@ int			main(int argc, char **argv)
 		while (i < g_philo_num)
 		{
 			g_ids[i] = i;
-			g_thread[i] = create_philo(take_forks, &(g_ids[i]));
+			if (!fork())
+				create_philo(take_forks, &(g_ids[i]));
 			i++;
 		}
+		wait(NULL);
 		help(&death_supervisor, &eating_supervisor, &i);
 		while (i < g_philo_num)
 			pthread_join(g_thread[i++], NULL);

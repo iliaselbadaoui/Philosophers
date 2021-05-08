@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 13:28:30 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 14:11:48 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:55:46 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void		init_forks(void)
 {
