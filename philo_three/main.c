@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/08 15:40:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/08 16:53:02 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,12 @@ int			main(int argc, char **argv)
 			g_number_of_times_of_eat = ft_atoi(argv[5]);
 		g_thread = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
 		g_ids = (int *)malloc(sizeof(int) * g_philo_num);
+		philos = (int *)malloc(sizeof(int) * g_philo_num);
 		init_forks();
 		while (i < g_philo_num)
 		{
 			g_ids[i] = i;
-			if (!fork())
+			if (!(philos[i] = fork()))
 				create_philo(take_forks, &(g_ids[i]));
 			i++;
 		}
