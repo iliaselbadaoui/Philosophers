@@ -1,39 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eating_times_supervisor.c                          :+:      :+:    :+:   */
+/*   eating_supervisor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 14:30:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/26 19:30:35 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/16 18:08:19 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 12:16:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
-void			*eating_times_supervisor(void *arg)
+void	*eating_supervisor(void *arg)
 {
-	int		i;
+	int				i;
+	t_args			*args;
+	t_philosoper	*philo;
 
-	arg = NULL;
-	while (!g_all_done_eating && !g_died)
+	philo = (t_philosoper *)arg;
+	args = (t_args *)malloc(sizeof(t_args));
+	args->philo = philo;
+	while (!philo->done && !philo->died)
 	{
 		i = 0;
-		usleep(g_time_to_eat);
-		while (i < g_philo_num)
+		usleep(philo->time_to_eat);
+		while (i < philo->philo_num)
 		{
-			if (g_times[i] >= g_number_of_times_of_eat &&
-			g_number_of_times_of_eat > 0)
-				g_all_done_eating = 1;
+			if (philo->times[i] >= philo->number_of_times_to_eat &&
+			philo->number_of_times_to_eat > 0)
+				philo->done = 1;
 			else
 			{
-				g_all_done_eating = 0;
+				philo->done = 0;
 				break ;
 			}
 			i++;
 		}
 	}
-	kill_philosophers(g_thread);
+	if (philo->done)
+		kill_philosophers(args);
 	return (NULL);
 }

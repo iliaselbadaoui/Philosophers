@@ -5,60 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 12:39:14 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/23 19:14:59 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 02:38:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static void	init_g(char **argv)
+static t_bool check_args(int argc, t_string *argv)
 {
-	pthread_mutex_init(&g_mutex, NULL);
-	pthread_mutex_init(&g_protect_output, NULL);
-	g_philo_num = ft_atoi(argv[1]);
-	g_time_to_die = ft_atoi(argv[2]) * 1000;
-	g_time_to_eat = ft_atoi(argv[3]) * 1000;
-	g_time_to_sleep = ft_atoi(argv[4]) * 1000;
-	g_number_of_times_of_eat = -1;
+	if (argc > 6 || argc < 5)
+	{
+		println("The programe must have 4 or 5 args\n", 2);
+		return (false);
+	}
+	argv++;
+	while (*argv)
+	{
+		if (!is_number(*argv))
+		{
+			println("All args must be numbers\n", 2);
+			return (false);
+		}
+		else if (ft_atoi(*argv) < 0)
+		{
+			println("All args must be positive numbers\n", 2);
+			return (false);
+		}
+		argv++;
+	}
+	return (true);
 }
 
-static void	help(pthread_t *death_supervisor,
-pthread_t *eating_supervisor, int *i)
+static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 {
-	pthread_create(death_supervisor, NULL,
-	supervisor_thread, (void *)g_thread);
-	pthread_create(eating_supervisor, NULL, eating_times_supervisor, NULL);
-	pthread_join(*death_supervisor, NULL);
-	pthread_join(*eating_supervisor, NULL);
-	*i = 0;
+	argv++;
+	(*philo) = (t_philosoper *)malloc(sizeof(t_philosoper));
+	(*philo)->philo_num = ft_atoi(argv[0]);
+	(*philo)->time_to_die = ft_atoi(argv[1]) * 1000;
+	(*philo)->time_to_eat = ft_atoi(argv[2]) * 1000;
+	(*philo)->time_to_sleep = ft_atoi(argv[3]) * 1000;
+	if (argc == 6)
+		(*philo)->number_of_times_to_eat = ft_atoi(argv[4]);
+	else
+		(*philo)->number_of_times_to_eat = -1;
+	pthread_mutex_init(&(*philo)->protect_output, NULL);
+	pthread_mutex_init(&(*philo)->protect_forks, NULL);
+	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
+	(*philo)->forks = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->eating = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->expected_times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
 }
 
-int			main(int argc, char **argv)
+static void	init_values(t_philosoper *philo)
 {
-	pthread_t	death_supervisor;
-	pthread_t	eating_supervisor;
 	int			i;
 
 	i = 0;
-	if (argc >= 5 && argc <= 6)
+	philo->all_done_eating = 0;
+	philo->died = 0;
+	philo->done = 0;
+	while (i < philo->philo_num)
 	{
-		init_g(argv);
-		if (argc == 6)
-			g_number_of_times_of_eat = ft_atoi(argv[5]);
-		g_thread = (pthread_t *)malloc(sizeof(pthread_t) * g_philo_num);
-		g_ids = (int *)malloc(sizeof(int) * g_philo_num);
-		init_forks();
-		while (i < g_philo_num)
-		{
-			g_ids[i] = i;
-			g_thread[i] = create_philo(take_forks, &(g_ids[i]));
-			i++;
-		}
-		help(&death_supervisor, &eating_supervisor, &i);
-		while (i < g_philo_num)
-			pthread_join(g_thread[i++], NULL);
+		philo->times[i] = 0;
+		philo->forks[i] = 0;
+		philo->eating[i] = 0;
+		philo->expected_times[i] = 0;
+		i++;
 	}
-	frees();
+}
+
+int	main(int argc, t_string *argv)
+{
+	t_philosoper	*philo;
+
+	philo = NULL;
+	if (!check_args(argc, argv))
+		return (1);
+	create_philosopher(argc, argv, &philo);
+	init_values(philo);
+	philosophers_launcher(philo);
 	return (0);
 }

@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_sleep.c                                      :+:      :+:    :+:   */
+/*   kill_philosophers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 12:53:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/08 10:55:57 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/16 03:13:26 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 03:10:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_three.h"
+#include "philo_one.h"
 
-void			philo_sleep(int id)
+void	kill_philosophers(t_args *args)
 {
-	philo_state(SLEEPING, id + 1);
-	usleep(g_time_to_sleep);
+	int				i;
+	t_philosoper	*philo;
+
+	philo = args->philo;
+	i = 0;
+	while (i < philo->philo_num)
+	{
+		pthread_detach(philo->threads[i]);
+		i++;
+	}
 }

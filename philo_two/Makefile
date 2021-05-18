@@ -1,7 +1,7 @@
 compile = gcc -Werror -Wall -Wextra
 NAME = philo_two
 src = *.c
-inc = -Iphilo_one.h
+inc = -Iphilo_two.h
 
 all: $(NAME)
 

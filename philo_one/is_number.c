@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_philo.c                                     :+:      :+:    :+:   */
+/*   is_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 16:30:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/01/14 11:58:09 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 18:24:04 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/12 18:26:17 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-pthread_t			create_philo(void *(func(void *arg)), int *id)
+t_bool	is_number(t_string nbr)
 {
-	pthread_t	thread;
-
-	pthread_create(&thread, NULL, func, (void *)id);
-	return (thread);
+	if (*nbr == '-' || *nbr == '+')
+		nbr++;
+	while (*nbr)
+	{
+		if (*nbr < '0' || *nbr > '9')
+			return (false);
+		nbr++;
+	}
+	return (true);
 }

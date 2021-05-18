@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_philo.c                                     :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 16:30:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 12:18:14 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 21:30:21 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 02:40:18 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_one.h"
 
-pthread_t			create_philo(void *(func(void *arg)), int *id)
+void	*philosophers(void *arg)
 {
-	pthread_t	thread;
+	t_args	*args;
+	int				id;
+	t_philosoper	*philo;
 
-	pthread_create(&thread, NULL, func, (void *)id);
-	return (thread);
+	args = (t_args *)arg;
+	id = args->id;
+	philo = args->philo;
+
+	while (!(args->philo->died) && !(args->philo->done))
+	{
+		take_forks(args);
+		philo_eat(args);
+		philo_sleep(args);
+		philo_think(args);
+	}
+	return (NULL);
 }

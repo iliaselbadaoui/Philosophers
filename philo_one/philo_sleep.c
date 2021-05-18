@@ -5,15 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 12:53:22 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/23 19:15:15 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/15 14:29:47 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 02:18:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void			philo_sleep(int id)
+void	philo_sleep(t_args *args)
 {
-	philo_state(SLEEPING, id + 1);
-	usleep(g_time_to_sleep);
+	int				id;
+	t_philosoper	*philo;
+
+	id = args->id;
+	philo = args->philo;
+	philo_state(SLEEPING, args);
+	usleep(philo->time_to_sleep);
 }

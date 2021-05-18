@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/24 10:28:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/18 02:39:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,51 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-pthread_mutex_t	g_mutex;
-pthread_mutex_t	g_protect_output;
-pthread_mutex_t	*g_eating;
-pthread_t		*g_thread;
-int				*g_forks;
-int				*g_philos;
-int				*g_times;
-int				*g_times_compare;
-int				*g_ids;
-int				g_all_done_eating;
-int				g_philo_num;
-int				g_time_to_eat;
-int				g_time_to_sleep;
-int				g_time_to_die;
-int				g_number_of_times_of_eat;
-int				g_died;
+typedef struct s_philosopher
+{
+	pthread_mutex_t	protect_forks;
+	pthread_mutex_t	protect_output;
+	pthread_t		*threads;
+	pthread_t		shinigami;
+	pthread_t		famine;
+	int				*forks;
+	int				*eating;
+	int				*times;
+	int				*expected_times;
+	int				all_done_eating;
+	int				philo_num;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				time_to_die;
+	int				number_of_times_to_eat;
+	int				died;
+	int				done;
+}	t_philosoper;
 
-pthread_t		create_philo(void *(func(void *arg)), int *id);
-void			init_forks(void);
-void			*take_forks(void *arg);
-void			start_eating(int id);
-void			philo_sleep(int id);
-void			*supervisor_thread(void *ptr);
+typedef struct		s_args
+{
+	int				id;
+	t_philosoper	*philo;
+}	t_args;
+typedef char	*t_string;
+typedef enum	e_bool
+{
+	false,
+	true
+}	t_bool;
+
+t_bool			is_number(t_string nbr);
+int				ft_atoi(t_string number);
+void			println(t_string str, int fd);
 void			ft_putnbr(long n);
-int				ft_atoi(char *number);
-void			println(char *str);
-void			philo_state(int state, int philo_id);
-void			kill_philosophers(pthread_t		*thread);
-void			*eating_times_supervisor(void *arg);
-void			think(int id);
-void			frees(void);
+void			philosophers_launcher(t_philosoper *philo);
+void			*philosophers(void *arg);
+void			*death_supervisor(void *arg);
+void			*eating_supervisor(void *arg);
+void			kill_philosophers(t_args *args);
+void			philo_state(int state, t_args *args);
+void			*take_forks(t_args *args);
+void			philo_eat(t_args *args);
+void			philo_sleep(t_args *args);
+void			philo_think(t_args *args);
 #endif

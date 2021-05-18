@@ -5,58 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/13 10:38:17 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/02/23 19:00:46 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 19:15:22 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 02:18:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static void		help(int id, int *flag)
-{
-	g_forks[0] = 1;
-	g_forks[g_philo_num - 1] = 1;
-	philo_state(FORK_TAKEN, id + 1)	;
-	*flag = 1;
-}
-
-static void		help2(int id, int *flag)
-{
-	g_forks[id] = 1;
-	g_forks[id - 1] = 1;
-	philo_state(FORK_TAKEN, id + 1);
-	*flag = 1;
-}
-
-static void		help3(int id)
-{
-	start_eating(id);
-	philo_sleep(id);
-	think(id);
-}
-
-void			*take_forks(void *arg)
+void	*take_forks(t_args *args)
 {
 	int				id;
-	int				flag;
+	int				done;
+	t_philosoper	*philo;
 
-	id = *((int *)arg);
-	while (!g_died)
+	id = args->id;
+	philo = args->philo;
+	done = 0;
+	while (!done && !philo->died)
 	{
-		flag = 0;
-		while (!flag && !g_died)
+		pthread_mutex_lock(&(philo->protect_forks));
+		if (id && !philo->forks[id] && !philo->forks[id - 1] && !philo->eating[id])
 		{
-			pthread_mutex_lock(&g_mutex);
-			if (id && !g_forks[id - 1] && !g_forks[id] && g_times[id] ==
-			g_times_compare[id])
-				help2(id, &flag);
-			else if (!id && !g_forks[g_philo_num - 1] && !g_forks[0] &&
-			g_times[id] == g_times_compare[id])
-				help(id, &flag);
-			pthread_mutex_unlock(&g_mutex);
+			philo->forks[id] = 1;
+			philo->forks[id - 1] = 1;
+			philo_state(FORK_TAKEN, args);
+			philo_state(FORK_TAKEN, args);
+			done = 1;
 		}
-		if (!g_died)
-			help3(id);
-	}
+		else if (!id && !philo->forks[id] && !philo->forks[philo->philo_num - 1] && !philo->eating[id])
+		{
+			philo->forks[id] = 1;
+			philo->forks[philo->philo_num - 1] = 1;
+			philo_state(FORK_TAKEN, args);
+			philo_state(FORK_TAKEN, args);
+			done = 1;
+		}
+		pthread_mutex_unlock(&(philo->protect_forks));
+	}	
 	return (NULL);
 }

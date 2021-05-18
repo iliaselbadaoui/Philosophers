@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_forks.c                                       :+:      :+:    :+:   */
+/*   kill_philosophers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/01 13:28:30 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 14:11:48 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/16 03:13:26 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 12:16:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void		init_forks(void)
+void	kill_philosophers(t_args *args)
 {
-	int		i;
+	int				i;
+	t_philosoper	*philo;
 
+	philo = args->philo;
 	i = 0;
-	g_philos = (int *)malloc(sizeof(int) * g_philo_num);
-	g_times = (int *)malloc(sizeof(int) * g_philo_num);
-	g_times_compare = (int *)malloc(sizeof(int) * g_philo_num);
-	while (i < g_philo_num)
+	while (i < philo->philo_num)
 	{
-		g_philos[i] = 0;
-		g_times[i] = 0;
-		g_times_compare[i] = 0;
+		pthread_detach(philo->threads[i]);
 		i++;
 	}
 }

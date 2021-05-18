@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_philo.c                                     :+:      :+:    :+:   */
+/*   philo_think.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 16:30:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/08 10:41:05 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/16 01:22:31 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 02:18:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_three.h"
+#include "philo_one.h"
 
-pthread_t			create_philo(void *(func(void *arg)), int *id)
+void	philo_think(t_args *args)
 {
-	pthread_t	thread;
-
-	pthread_create(&thread, NULL, func, (void *)id);
-	return (thread);
+	philo_state(THINKING, args);
 }

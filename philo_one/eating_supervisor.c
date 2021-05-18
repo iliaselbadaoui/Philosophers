@@ -1,51 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   supervisor_thread.c                                :+:      :+:    :+:   */
+/*   eating_supervisor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 20:06:23 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/06 16:34:50 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/16 18:08:19 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 03:19:50 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_one.h"
 
-void			kill_philosophers(pthread_t *thread)
-{
-	int		i;
-
-	i = 0;
-	while (i < g_philo_num)
-	{
-		pthread_detach(thread[i]);
-		i++;
-	}
-}
-
-void			*supervisor_thread(void *ptr)
+void	*eating_supervisor(void *arg)
 {
 	int				i;
-	pthread_t		*thread;
+	t_args			*args;
+	t_philosoper	*philo;
 
-	thread = (pthread_t *)ptr;
-	while (!g_died && !g_all_done_eating)
+	philo = (t_philosoper *)arg;
+	args = (t_args *)malloc(sizeof(t_args));
+	args->philo = philo;
+	while (!philo->done && !philo->died)
 	{
-		usleep(g_time_to_die);
 		i = 0;
-		while (i < g_philo_num)
+		usleep(philo->time_to_eat);
+		while (i < philo->philo_num)
 		{
-			if (g_times[i] == g_times_compare[i] && !g_philos[i])
+			if (philo->times[i] >= philo->number_of_times_to_eat &&
+			philo->number_of_times_to_eat > 0)
+				philo->done = 1;
+			else
 			{
-				g_died = 1;
-				philo_state(DIED, i + 1);
-				kill_philosophers(thread);
+				philo->done = 0;
 				break ;
 			}
-			g_times_compare[i]++;
 			i++;
 		}
 	}
+	if (philo->done)
+		kill_philosophers(args);
 	return (NULL);
 }

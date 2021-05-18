@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   println.c                                          :+:      :+:    :+:   */
+/*   philo_eat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 10:48:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/08 10:56:14 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 12:22:27 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_three.h"
+#include "philo_two.h"
 
-void		println(char *str)
+void		philo_eat(t_args *args)
 {
-	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
+	int				id;
+	t_philosoper	*philo;
+
+	id = args->id;
+	philo = args->philo;
+	if (philo->died)
+		return ;
+	philo_state(EATING, args);
+	philo->eating[id] = 1;
+	usleep(philo->time_to_eat);
+	philo->times[id]++;
+	sem_post(philo->forks);
+	sem_post(philo->forks);
+	philo->eating[id] = 0;
 }

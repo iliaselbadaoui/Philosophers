@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   philo_think.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 08:46:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/08 10:41:16 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/16 01:22:31 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 12:16:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_three.h"
+#include "philo_two.h"
 
-void			frees(void)
+void	philo_think(t_args *args)
 {
-	free(g_thread);
-	free(g_ids);
-	free(g_philos);
-	free(g_times);
-	sem_unlink("FORKS");
-	sem_unlink("FORKS_PROTECT");
-	sem_unlink("OUTPUT_PROTECT");
+	philo_state(THINKING, args);
 }

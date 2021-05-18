@@ -1,10 +1,10 @@
 # Philosophers
-check the code of philo_one for the following things and ask for explanation.
+check the code of philo_two for the following things and ask for explanation.
 - Check if there is one thread per philosopher.
 - Check if there is a mutex per fork and that it's used to check the fork value and/or change it.
 - Check if the output is protected against multiple access. To avoid a scrambled view.
 - Check how the death of a philosopher is checked and if there is a mutex to protect that a philosopher dies and eats at the same time.
-Philo_one test
+philo_two test
 - Do not test with more than 200 philosphers
 - Do not test with time_to_die or time_to_eat or time_to_sleep under 60 ms
 - Test with 5 800 200 200, no one should die!

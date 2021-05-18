@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   frees.c                                            :+:      :+:    :+:   */
+/*   is_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 08:46:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/05 14:18:04 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 18:24:04 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 12:16:16 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void			frees(void)
+t_bool	is_number(t_string nbr)
 {
-	free(g_thread);
-	free(g_ids);
-	free(g_philos);
-	free(g_times);
-	sem_unlink("FORKS");
-	sem_unlink("FORKS_PROTECT");
-	sem_unlink("OUTPUT_PROTECT");
+	if (*nbr == '-' || *nbr == '+')
+		nbr++;
+	while (*nbr)
+	{
+		if (*nbr < '0' || *nbr > '9')
+			return (false);
+		nbr++;
+	}
+	return (true);
 }
