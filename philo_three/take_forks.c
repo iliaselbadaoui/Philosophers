@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_number.c                                        :+:      :+:    :+:   */
+/*   take_forks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 18:24:04 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 20:28:21 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/12 19:15:22 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/18 23:43:28 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-t_bool	is_number(t_string nbr)
+void	*take_forks(t_args *args)
 {
-	if (*nbr == '-' || *nbr == '+')
-		nbr++;
-	while (*nbr)
+	int				id;
+	int				done;
+	t_philosoper	*philo;
+
+	id = args->id;
+	philo = args->philo;
+	done = 0;
+	while (!done && !philo->died)
 	{
-		if (*nbr < '0' || *nbr > '9')
-			return (false);
-		nbr++;
-	}
-	return (true);
+		sem_wait(philo->protect_forks);
+		sem_wait(philo->forks);
+		sem_wait(philo->forks);
+		philo_state(FORK_TAKEN, args);
+		philo_state(FORK_TAKEN, args);
+		done = 1;
+		sem_post(philo->protect_forks);
+	}	
+	return (NULL);
 }

@@ -1,26 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_number.c                                        :+:      :+:    :+:   */
+/*   eating_supervisor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 18:24:04 by ielbadao          #+#    #+#             */
+/*   Created: 2021/05/16 18:08:19 by ielbadao          #+#    #+#             */
 /*   Updated: 2021/05/18 20:28:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-t_bool	is_number(t_string nbr)
+void	*eating_supervisor(void *arg)
 {
-	if (*nbr == '-' || *nbr == '+')
-		nbr++;
-	while (*nbr)
+	int				i;
+	t_args			*args;
+	t_philosoper	*philo;
+
+	philo = (t_philosoper *)arg;
+	args = (t_args *)malloc(sizeof(t_args));
+	args->philo = philo;
+	while (!philo->done && !philo->died)
 	{
-		if (*nbr < '0' || *nbr > '9')
-			return (false);
-		nbr++;
+		i = 0;
+		usleep(philo->time_to_eat);
+		while (i < philo->philo_num)
+		{
+			if (philo->times[i] >= philo->number_of_times_to_eat &&
+			philo->number_of_times_to_eat > 0)
+				philo->done = 1;
+			else
+			{
+				philo->done = 0;
+				break ;
+			}
+			i++;
+		}
 	}
-	return (true);
+	if (philo->done)
+		kill_philosophers(args);
+	return (NULL);
 }

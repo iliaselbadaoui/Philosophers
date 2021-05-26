@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 20:30:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:51:02 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 static t_bool check_args(int argc, t_string *argv)
 {
@@ -49,7 +49,7 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 		(*philo)->number_of_times_to_eat = ft_atoi(argv[4]);
 	else
 		(*philo)->number_of_times_to_eat = -1;
-	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
+	(*philo)->threads = (pid_t *)malloc(sizeof(pid_t) * (*philo)->philo_num);
 	(*philo)->eating = (int *)malloc(sizeof(int) * (*philo)->philo_num);
 	(*philo)->times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
 	(*philo)->expected_times = (int *)malloc(sizeof(int) * (*philo)->philo_num);

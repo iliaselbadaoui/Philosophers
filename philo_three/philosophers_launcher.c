@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 19:23:24 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 20:28:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/18 23:54:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,33 @@
 
 static void	supervisors(t_philosoper *philo)
 {
-	pthread_create(&(philo->shinigami), NULL, death_supervisor, (void *)philo);
-	pthread_create(&(philo->famine), NULL, eating_supervisor, (void *)philo);
+	t_args		*args;
+
+	args = (t_args *)malloc(sizeof(t_args));
+	args->philo = philo;
+	args->id = 0;
+	// if ((philo->shinigami = fork()) > 0)
+	// 	death_supervisor(args);
+	// if ((philo->famine = fork()) > 0)
+	// 	eating_supervisor(args);
 }
 
 void		philosophers_launcher(t_philosoper *philo)
 {
 	int			i;
 	t_args		*args;
+	pthread_t	*philosopher;
 
 	i = 0;
+	philosopher = (pthread_t *)malloc(sizeof(pthread_t) * philo->philo_num);
 	supervisors(philo);
 	while (i < philo->philo_num)
 	{
 		args = (t_args *)malloc(sizeof(t_args));
 		args->philo = philo;
 		args->id = i;
-		pthread_create(&(philo->threads[i]), NULL, philosophers, (void *)args);
-		i++;
-	}
-	pthread_join(philo->shinigami, NULL);
-	pthread_join(philo->famine, NULL);
-	i = 0;
-	while (i < philo->philo_num)
-	{
-		pthread_join(philo->threads[i], NULL);
+		if ((philo->threads[i] = fork()) > 0)
+			philosophers((void *) args);
 		i++;
 	}
 }

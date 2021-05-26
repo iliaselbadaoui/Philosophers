@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 03:13:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 12:16:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/18 20:28:21 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void	kill_philosophers(t_args *args)
 {

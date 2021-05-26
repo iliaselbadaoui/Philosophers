@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef philo_three_H
-# define philo_three_H
+#ifndef PHILO_THREE_H
+# define PHILO_THREE_H
 # define FORK_TAKEN 0
 # define EATING 1
 # define SLEEPING 2
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+#include <signal.h>
 # include <semaphore.h>
 # include <sys/time.h>
 
@@ -29,9 +30,9 @@ typedef struct s_philosopher
 	sem_t			*protect_forks;
 	sem_t			*protect_output;
 	sem_t			*forks;
-	pthread_t		*threads;
-	pthread_t		shinigami;
-	pthread_t		famine;
+	pid_t			*threads;
+	pid_t			shinigami;
+	pid_t			famine;
 	int				*eating;
 	int				*times;
 	int				*expected_times;
