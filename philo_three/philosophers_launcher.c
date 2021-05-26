@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 19:23:24 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 23:54:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/26 21:15:39 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static void	supervisors(t_philosoper *philo)
 	args = (t_args *)malloc(sizeof(t_args));
 	args->philo = philo;
 	args->id = 0;
-	// if ((philo->shinigami = fork()) > 0)
-	// 	death_supervisor(args);
-	// if ((philo->famine = fork()) > 0)
-	// 	eating_supervisor(args);
+	philo->shinigami = fork();
+	philo->famine = fork();
+	if (philo->shinigami == 0)
+		death_supervisor(args);
+	if (philo->famine == 0)		eating_supervisor(args);
 }
 
 void		philosophers_launcher(t_philosoper *philo)
@@ -39,7 +40,8 @@ void		philosophers_launcher(t_philosoper *philo)
 		args = (t_args *)malloc(sizeof(t_args));
 		args->philo = philo;
 		args->id = i;
-		if ((philo->threads[i] = fork()) > 0)
+		philo->threads[i] = fork();
+		if (philo->threads[i] == 0)
 			philosophers((void *) args);
 		i++;
 	}
