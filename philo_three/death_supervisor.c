@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 01:55:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 20:28:21 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/28 14:26:51 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	*death_supervisor(void *arg)
 {
-	int				i;
+	int				i = 0;
 	t_philosoper	*philo;
 	t_args			*args;
 
 	philo = (t_philosoper *)arg;
+	printf("died(%d) done(%d) philos(%d)\n", philo->died, philo->done, philo->philo_num);
 	while (!philo->died && !philo->done)
 	{
 		usleep(philo->time_to_die);
