@@ -6,25 +6,25 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 19:23:24 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/28 14:24:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:27:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-static void	supervisors(t_philosoper *philo)
-{
-	philo->shinigami = fork();
-	if (philo->shinigami == 0)
-		death_supervisor(philo);
-	else if (philo->shinigami < 0)
-			return ;
-	philo->famine = fork();
-	if (philo->famine == 0)
-		eating_supervisor(philo);
-	else if (philo->famine< 0)
-			return ;
-}
+// static void	supervisors(t_philosoper *philo)
+// {
+// 	philo->shinigami = fork();
+// 	if (philo->shinigami == 0)
+// 		death_supervisor(philo);
+// 	else if (philo->shinigami < 0)
+// 			return ;
+// 	philo->famine = fork();
+// 	if (philo->famine == 0)
+// 		eating_supervisor(philo);
+// 	else if (philo->famine< 0)
+// 			return ;
+// }
 
 void		philosophers_launcher(t_philosoper *philo)
 {
@@ -46,15 +46,6 @@ void		philosophers_launcher(t_philosoper *philo)
 			return ;
 		i++;
 	}
-	supervisors(philo);
-	sleep(5);
-	kill(philo->famine, SIGINT);
-	kill(philo->shinigami, SIGINT);
-	i = 0;
-	while (i < philo->philo_num)
-	{
-		kill(philo->threads[i], SIGINT);
-		i++;
-	}
+	// supervisors(philo);
 	waitpid(-1, NULL, 0);
 }
