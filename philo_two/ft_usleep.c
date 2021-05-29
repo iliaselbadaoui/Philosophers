@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_eat.c                                        :+:      :+:    :+:   */
+/*   ft_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 19:41:41 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/29 17:32:31 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/29 17:42:14 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_one.h"
 
-void		philo_eat(t_args *args)
+void ft_usleep(int span)
 {
-	int				id;
-	t_philosoper	*philo;
-
-	id = args->id;
-	philo = args->philo;
-	philo_state(EATING, args);
-	usleep(philo->time_to_eat);
-	philo->times[id] = get_timestamp();
-	sem_post(philo->forks);
-	sem_post(philo->forks);
+	struct timeval	tv1;
+	struct timeval	tv2;
+	int				diff;;
+	
+	gettimeofday(&tv1, NULL);
+	while (1)
+	{
+		gettimeofday(&tv2, NULL);
+		diff = span - (tv2.tv_usec - tv1.tv_usec + (tv2.tv_sec - tv1.tv_sec) * 1000000);
+		if (diff < 0)
+			break;
+		if ( diff < 50)
+		{
+			usleep(diff);
+			break;
+		}
+		usleep(50);
+	}
 }

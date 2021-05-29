@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 10:33:23 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 19:51:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 	(*philo)->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
 	(*philo)->protect_eating = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
 	(*philo)->times = (long *)malloc(sizeof(long) * (*philo)->philo_num);
+	(*philo)->num_of_times_a_philo_ate = (int *)malloc(sizeof(int) * (*philo)->philo_num);
 }
 
 static void	init_values(t_philosoper *philo)
@@ -67,6 +68,7 @@ static void	init_values(t_philosoper *philo)
 	while (i < philo->philo_num)
 	{
 		philo->times[i] = get_timestamp();
+		philo->num_of_times_a_philo_ate[i] = 0;
 		pthread_mutex_init(&philo->forks[i], NULL);
 		pthread_mutex_init(&philo->protect_eating[i], NULL);
 		i++;

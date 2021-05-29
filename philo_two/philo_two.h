@@ -32,10 +32,7 @@ typedef struct s_philosopher
 	pthread_t		*threads;
 	pthread_t		shinigami;
 	pthread_t		famine;
-	int				*eating;
-	int				*times;
-	int				*expected_times;
-	int				all_done_eating;
+	long			*times;
 	int				philo_num;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -58,9 +55,12 @@ typedef enum	e_bool
 }	t_bool;
 
 t_bool			is_number(t_string nbr);
+t_string		sema_name_gen();
 int				ft_atoi(t_string number);
 void			println(t_string str, int fd);
 void			ft_putnbr(long n);
+void 			ft_usleep(int span);
+long			get_timestamp();
 void			philosophers_launcher(t_philosoper *philo);
 void			*philosophers(void *arg);
 void			*death_supervisor(void *arg);

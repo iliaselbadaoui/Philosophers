@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_eat.c                                        :+:      :+:    :+:   */
+/*   get_timestamp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 19:41:41 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/29 09:51:46 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/29 18:02:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_one.h"
 
-void		philo_eat(t_args *args)
+long	get_timestamp()
 {
-	int				id;
-	t_philosoper	*philo;
+	struct timeval	tval;
 
-	id = args->id;
-	philo = args->philo;
-	philo_state(EATING, args);
-	usleep(philo->time_to_eat);
-	philo->times[id] = get_timestamp();
-	sem_post(philo->forks);
-	sem_post(philo->forks);
+	gettimeofday(&tval, NULL);
+	return (tval.tv_sec * 1000 + tval.tv_usec / 1000);
 }

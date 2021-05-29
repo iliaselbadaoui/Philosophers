@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 20:30:02 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 18:37:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 	else
 		(*philo)->number_of_times_to_eat = -1;
 	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
-	(*philo)->eating = (int *)malloc(sizeof(int) * (*philo)->philo_num);
 	(*philo)->times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
-	(*philo)->expected_times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
 }
 
 static void	init_values(t_philosoper *philo)
@@ -66,14 +64,11 @@ static void	init_values(t_philosoper *philo)
 	philo->forks = sem_open("FORKS", O_CREAT, 0777, philo->philo_num);
 	philo->protect_forks = sem_open("PROTECT_FORKS", O_CREAT, 0777, 1);
 	philo->protect_output = sem_open("PROTECT_OUTPUT", O_CREAT, 0777, 1);
-	philo->all_done_eating = 0;
 	philo->died = 0;
 	philo->done = 0;
 	while (i < philo->philo_num)
 	{
 		philo->times[i] = 0;
-		philo->eating[i] = 0;
-		philo->expected_times[i] = 0;
 		i++;
 	}
 }

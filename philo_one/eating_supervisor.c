@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 18:08:19 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 17:46:45 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 19:52:00 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*eating_supervisor(void *arg)
 		ft_usleep(philo->time_to_eat);
 		while (i < philo->philo_num)
 		{
-			if (philo->times[i] >= philo->number_of_times_to_eat &&
+			if (philo->num_of_times_a_philo_ate[i] >= philo->number_of_times_to_eat &&
 			philo->number_of_times_to_eat > 0)
 				philo->done = 1;
 			else

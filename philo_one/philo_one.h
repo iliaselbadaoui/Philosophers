@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 17:40:25 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 19:48:08 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philosopher
 	pthread_t		shinigami;
 	pthread_t		famine;
 	long			*times;
+	int				*num_of_times_a_philo_ate;
 	int				philo_num;
 	int				time_to_eat;
 	int				time_to_sleep;
