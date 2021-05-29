@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 02:39:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 10:27:59 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ typedef struct s_philosopher
 {
 	pthread_mutex_t	protect_forks;
 	pthread_mutex_t	protect_output;
+	pthread_mutex_t	*protect_eating;
+	pthread_mutex_t	*forks;
 	pthread_t		*threads;
 	pthread_t		shinigami;
 	pthread_t		famine;
-	int				*forks;
-	int				*eating;
-	int				*times;
-	int				*expected_times;
-	int				all_done_eating;
+	long			*times;
 	int				philo_num;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -60,6 +58,7 @@ t_bool			is_number(t_string nbr);
 int				ft_atoi(t_string number);
 void			println(t_string str, int fd);
 void			ft_putnbr(long n);
+long			get_timestamp();
 void			philosophers_launcher(t_philosoper *philo);
 void			*philosophers(void *arg);
 void			*death_supervisor(void *arg);

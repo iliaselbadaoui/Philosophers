@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 02:38:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 10:33:23 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 	pthread_mutex_init(&(*philo)->protect_output, NULL);
 	pthread_mutex_init(&(*philo)->protect_forks, NULL);
 	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
-	(*philo)->forks = (int *)malloc(sizeof(int) * (*philo)->philo_num);
-	(*philo)->eating = (int *)malloc(sizeof(int) * (*philo)->philo_num);
-	(*philo)->times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
-	(*philo)->expected_times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
+	(*philo)->protect_eating = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
+	(*philo)->times = (long *)malloc(sizeof(long) * (*philo)->philo_num);
 }
 
 static void	init_values(t_philosoper *philo)
@@ -63,15 +62,13 @@ static void	init_values(t_philosoper *philo)
 	int			i;
 
 	i = 0;
-	philo->all_done_eating = 0;
 	philo->died = 0;
 	philo->done = 0;
 	while (i < philo->philo_num)
 	{
-		philo->times[i] = 0;
-		philo->forks[i] = 0;
-		philo->eating[i] = 0;
-		philo->expected_times[i] = 0;
+		philo->times[i] = get_timestamp();
+		pthread_mutex_init(&philo->forks[i], NULL);
+		pthread_mutex_init(&philo->protect_eating[i], NULL);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 20:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/12 22:45:07 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 10:13:49 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void			philo_state(int state, t_args *args)
 {
-	struct timeval	tval;
 	int				done_printing;
 
 	done_printing = 0;
-	gettimeofday(&tval, NULL);
 	while (!done_printing)
 	{
 		pthread_mutex_lock(&args->philo->protect_output);
-		ft_putnbr(tval.tv_sec * 1000 + tval.tv_usec / 1000);
+		ft_putnbr(get_timestamp());
 		println(" ", 1);
 		done_printing = 1;
 		ft_putnbr(args->id + 1);

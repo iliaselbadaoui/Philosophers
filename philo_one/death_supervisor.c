@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 01:55:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 03:19:47 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 10:25:34 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	*death_supervisor(void *arg)
 		i = 0;
 		while (i < philo->philo_num)
 		{
-			if (!philo->eating[i] && philo->expected_times[i] == philo->times[i] && !philo->done)
+			pthread_mutex_lock(&philo->protect_eating[i]);
+			if (get_timestamp() - philo->times[i] > philo->time_to_die && !philo->done)
 			{
 				args = (t_args *)malloc(sizeof(t_args));
 				args->philo = philo;
@@ -34,7 +35,7 @@ void	*death_supervisor(void *arg)
 				philo->died = 1;
 				break ;
 			}
-			philo->expected_times[i]++;
+			pthread_mutex_unlock(&philo->protect_eating[i]);
 			i++;
 		}
 	}

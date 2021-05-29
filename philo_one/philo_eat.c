@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 02:18:44 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 11:31:52 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ void		philo_eat(t_args *args)
 	philo = args->philo;
 	if (philo->died)
 		return ;
+	pthread_mutex_lock(&philo->protect_eating[id]);
 	philo_state(EATING, args);
-	philo->eating[id] = 1;
+	philo->times[id] = get_timestamp();
 	usleep(philo->time_to_eat);
-	philo->times[id]++;
-	if (id && philo->forks[id] && philo->forks[id - 1])
+	pthread_mutex_unlock(&philo->protect_eating[id]);
+	if (id)
 	{
-		philo->forks[id] = 0;
-		philo->forks[id - 1] = 0;
+		pthread_mutex_unlock(&philo->forks[id]);
+		pthread_mutex_unlock(&philo->forks[id - 1]);
 	}
-	else if (!id && philo->forks[id] && philo->forks[philo->philo_num - 1])
+	else if (!id)
 	{
-		philo->forks[id] = 0;
-		philo->forks[philo->philo_num - 1] = 0;
+		pthread_mutex_unlock(&philo->forks[id]);
+		pthread_mutex_unlock(&philo->forks[philo->philo_num - 1]);
 	}
-	philo->eating[id] = 0;
 }
