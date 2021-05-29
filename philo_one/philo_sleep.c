@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 14:29:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 02:18:50 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 17:46:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	philo_sleep(t_args *args)
 	id = args->id;
 	philo = args->philo;
 	philo_state(SLEEPING, args);
-	usleep(philo->time_to_sleep);
+	ft_usleep(philo->time_to_sleep);
 }

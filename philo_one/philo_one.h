@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 10:27:59 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 17:40:25 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_bool			is_number(t_string nbr);
 int				ft_atoi(t_string number);
 void			println(t_string str, int fd);
 void			ft_putnbr(long n);
+void			ft_usleep(int span);
 long			get_timestamp();
 void			philosophers_launcher(t_philosoper *philo);
 void			*philosophers(void *arg);

@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 11:31:52 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/29 17:46:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void		philo_eat(t_args *args)
 	if (philo->died)
 		return ;
 	pthread_mutex_lock(&philo->protect_eating[id]);
-	philo_state(EATING, args);
 	philo->times[id] = get_timestamp();
-	usleep(philo->time_to_eat);
+	philo_state(EATING, args);
+	ft_usleep(philo->time_to_eat);
 	pthread_mutex_unlock(&philo->protect_eating[id]);
 	if (id)
 	{
