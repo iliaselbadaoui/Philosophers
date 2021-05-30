@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 17:32:31 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 17:42:14 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 09:54:31 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 void ft_usleep(int span)
 {

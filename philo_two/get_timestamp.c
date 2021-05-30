@@ -6,11 +6,11 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 09:51:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 18:02:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 09:54:22 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 long	get_timestamp()
 {

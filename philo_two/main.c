@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 18:37:11 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 09:54:05 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 	else
 		(*philo)->number_of_times_to_eat = -1;
 	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
-	(*philo)->times = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->times = (long *)malloc(sizeof(long) * (*philo)->philo_num);
+	(*philo)->num_of_times_a_philo_ate = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->protect_eating = (sem_t **)malloc(sizeof(sem_t *) * (*philo)->philo_num);
+	(*philo)->sem_names = (t_string *)malloc(sizeof(t_string) * (*philo)->philo_num);
 }
 
 static void	init_values(t_philosoper *philo)
@@ -68,7 +71,11 @@ static void	init_values(t_philosoper *philo)
 	philo->done = 0;
 	while (i < philo->philo_num)
 	{
-		philo->times[i] = 0;
+		philo->sem_names[i] = sema_name_gen();
+		sem_unlink(philo->sem_names[i]);
+		philo->protect_eating[i] = sem_open(philo->sem_names[i], O_CREAT, 0777, 1);
+		philo->times[i] = get_timestamp();
+		philo->num_of_times_a_philo_ate[i] = 0;
 		i++;
 	}
 }

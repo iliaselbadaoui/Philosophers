@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 18:42:18 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 18:42:26 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 09:59:38 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ t_string		sema_name_gen()
 	{
 		name[i++]	= number[j++];
 	}
+	free(number);
+	number = NULL;
 	name[i] = '\0';
 	count++;
 	return (name);

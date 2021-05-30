@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three.h                                        :+:      :+:    :+:   */
+/*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/18 11:39:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 09:53:20 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@
 # include <semaphore.h>
 # include <sys/time.h>
 
+typedef char	*t_string;
 typedef struct s_philosopher
 {
 	sem_t			*protect_forks;
+	sem_t			**protect_eating;
 	sem_t			*protect_output;
 	sem_t			*forks;
+	t_string		*sem_names;
 	pthread_t		*threads;
 	pthread_t		shinigami;
 	pthread_t		famine;
 	long			*times;
+	int				*num_of_times_a_philo_ate;
 	int				philo_num;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -47,7 +51,6 @@ typedef struct		s_args
 	int				id;
 	t_philosoper	*philo;
 }	t_args;
-typedef char	*t_string;
 typedef enum	e_bool
 {
 	false,
