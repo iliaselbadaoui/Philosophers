@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 14:29:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 17:46:45 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 15:41:39 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	philo_sleep(t_args *args)
 
 	id = args->id;
 	philo = args->philo;
+	pthread_mutex_unlock(&philo->forks[id]);
+	pthread_mutex_unlock(&philo->forks[(id + 1) % philo->philo_num]);
 	philo_state(SLEEPING, args);
 	ft_usleep(philo->time_to_sleep);
 }

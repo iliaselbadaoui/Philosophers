@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 09:56:31 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 14:19:10 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void		philo_eat(t_args *args)
 	sem_wait(philo->protect_eating[id]);
 	philo_state(EATING, args);
 	philo->times[id] = get_timestamp();
-	usleep(philo->time_to_eat);
 	philo->num_of_times_a_philo_ate[id]++;
+	ft_usleep(philo->time_to_eat);
 	sem_post(philo->forks);
 	sem_post(philo->forks);
 	sem_post(philo->protect_eating[id]);

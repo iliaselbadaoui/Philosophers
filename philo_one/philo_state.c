@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 20:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 10:13:49 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 13:42:40 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void			philo_state(int state, t_args *args)
 	int				done_printing;
 
 	done_printing = 0;
+	if (args->philo->died)
+		return ;
 	while (!done_printing)
 	{
 		pthread_mutex_lock(&args->philo->protect_output);

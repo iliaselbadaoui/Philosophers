@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 01:55:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 18:15:08 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 15:37:09 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	*death_supervisor(void *arg)
 	philo = (t_philosoper *)arg;
 	while (!philo->died && !philo->done)
 	{
-		ft_usleep(philo->time_to_die);
 		i = 0;
 		while (i < philo->philo_num)
 		{
 			pthread_mutex_lock(&philo->protect_eating[i]);
 			diff = get_timestamp() - philo->times[i];
-			if (diff > philo->time_to_die / 1000)
+			if (diff > philo->time_to_die / 1000 && !philo->done)
 			{
 				args = (t_args *)malloc(sizeof(t_args));
 				args->philo = philo;

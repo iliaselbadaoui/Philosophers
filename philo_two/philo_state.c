@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 20:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 09:53:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 14:02:56 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void			philo_state(int state, t_args *args)
 
 	done_printing = 0;
 	gettimeofday(&tval, NULL);
+	if (args->philo->died)
+		return ;
 	while (!done_printing)
 	{
 		sem_wait(args->philo->protect_output);
