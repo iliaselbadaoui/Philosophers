@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 09:51:46 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/29 18:02:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 17:59:01 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-long	get_timestamp()
+long	get_timestamp(void)
 {
 	struct timeval	tval;
 

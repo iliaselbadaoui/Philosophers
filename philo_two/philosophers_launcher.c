@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 19:23:24 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 09:53:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:15:58 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	supervisors(t_philosoper *philo)
 	pthread_create(&(philo->famine), NULL, eating_supervisor, (void *)philo);
 }
 
-void		philosophers_launcher(t_philosoper *philo)
+void	philosophers_launcher(t_philosoper *philo)
 {
 	int			i;
 	t_args		*args;

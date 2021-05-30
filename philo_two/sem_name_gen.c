@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 18:42:18 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 09:59:38 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:18:14 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo_two.h"
+#include "philo_two.h"
 
-static int		integer_length(int nb)
+static int	integer_length(int nb)
 {
 	int		len;
 
@@ -30,7 +30,7 @@ static int		integer_length(int nb)
 	return (len);
 }
 
-static int		power(int base, int power)
+static int	power(int base, int power)
 {
 	int	res;
 
@@ -72,7 +72,7 @@ static t_string	integer_to_string(int nb)
 	return (res);
 }
 
-t_string		sema_name_gen()
+t_string	sema_name_gen(void)
 {
 	t_string	name;
 	t_string	number;
@@ -91,7 +91,7 @@ t_string		sema_name_gen()
 	name[4] = '_';
 	while (i < integer_length(count) + 6)
 	{
-		name[i++]	= number[j++];
+		name[i++] = number[j++];
 	}
 	free(number);
 	number = NULL;

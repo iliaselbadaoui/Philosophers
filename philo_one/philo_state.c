@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 20:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 13:42:40 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:02:13 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void			philo_state(int state, t_args *args)
+void	philo_state(int state, t_args *args)
 {
 	int				done_printing;
 

@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 15:24:16 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:00:57 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static t_bool check_args(int argc, t_string *argv)
+static t_bool	check_args(int argc, t_string *argv)
 {
 	if (argc > 6 || argc < 5)
 	{
@@ -51,11 +51,15 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 		(*philo)->number_of_times_to_eat = -1;
 	pthread_mutex_init(&(*philo)->protect_output, NULL);
 	pthread_mutex_init(&(*philo)->protect_forks, NULL);
-	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
-	(*philo)->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
-	(*philo)->protect_eating = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
+	(*philo)->threads = (pthread_t *)
+		malloc(sizeof(pthread_t) * (*philo)->philo_num);
+	(*philo)->forks = (pthread_mutex_t *)
+		malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
+	(*philo)->protect_eating = (pthread_mutex_t *)
+		malloc(sizeof(pthread_mutex_t) * (*philo)->philo_num);
 	(*philo)->times = (long *)malloc(sizeof(long) * (*philo)->philo_num);
-	(*philo)->num_of_times_a_philo_ate = (int *)malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->num_of_times_a_philo_ate = (int *)
+		malloc(sizeof(int) * (*philo)->philo_num);
 }
 
 static void	init_values(t_philosoper *philo)

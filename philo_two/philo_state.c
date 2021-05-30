@@ -6,25 +6,23 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 20:46:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 14:02:56 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:14:02 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void			philo_state(int state, t_args *args)
+void	philo_state(int state, t_args *args)
 {
-	struct timeval	tval;
 	int				done_printing;
 
 	done_printing = 0;
-	gettimeofday(&tval, NULL);
 	if (args->philo->died)
 		return ;
 	while (!done_printing)
 	{
 		sem_wait(args->philo->protect_output);
-		ft_putnbr(tval.tv_sec * 1000 + tval.tv_usec / 1000);
+		ft_putnbr(get_timestamp());
 		println(" ", 1);
 		done_printing = 1;
 		ft_putnbr(args->id + 1);

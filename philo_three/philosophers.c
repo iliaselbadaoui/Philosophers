@@ -6,7 +6,7 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:30:21 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 16:54:38 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*philosophers(void *arg)
 	id = args->id;
 	philo = args->philo;
 
-	while (!(args->philo->died) && !(args->philo->done))
+	while (1)
 	{
 		take_forks(args);
 		philo_eat(args);

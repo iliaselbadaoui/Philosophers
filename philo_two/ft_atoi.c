@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:23:47 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 09:53:20 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:07:45 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-int				ft_atoi(t_string number)
+int	ft_atoi(t_string number)
 {
 	int		result;
 	int		sign;

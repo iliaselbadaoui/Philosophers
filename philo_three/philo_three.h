@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three.h                                        :+:      :+:    :+:   */
+/*   philo_three.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/30 16:07:25 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 09:53:20 by ielbadao         ###   ########.fr       */
+/*   Created: 2021/05/30 16:33:35 by ielbadao          #+#    #+#             */
+/*   Updated: 2021/05/30 17:22:36 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ typedef struct s_philosopher
 	sem_t			**protect_eating;
 	sem_t			*protect_output;
 	sem_t			*forks;
+	sem_t			*wait_end;
+	sem_t			**wait_eat;
 	t_string		*sem_names;
+	t_string		*sem_wait_names;
 	pthread_t		*threads;
 	pthread_t		shinigami;
 	pthread_t		famine;
@@ -42,8 +45,6 @@ typedef struct s_philosopher
 	int				time_to_sleep;
 	int				time_to_die;
 	int				number_of_times_to_eat;
-	int				died;
-	int				done;
 }	t_philosoper;
 
 typedef struct		s_args
@@ -64,7 +65,7 @@ void			println(t_string str, int fd);
 void			ft_putnbr(long n);
 void 			ft_usleep(int span);
 long			get_timestamp();
-void			philosophers_launcher(t_philosoper *philo);
+void			philosophers_launcher(t_philosoper *philo, pid_t *pids);
 void			*philosophers(void *arg);
 void			*death_supervisor(void *arg);
 void			*eating_supervisor(void *arg);

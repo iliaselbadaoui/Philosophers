@@ -6,11 +6,20 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 01:55:07 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 15:37:09 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 17:38:01 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+static void	shinegami_helper(t_args **args, t_philosoper *philo, int id)
+{
+	(*args) = (t_args *)malloc(sizeof(t_args));
+	(*args)->philo = philo;
+	(*args)->id = id;
+	philo_state(DIED, *args);
+	philo->died = 1;
+}
 
 void	*death_supervisor(void *arg)
 {
@@ -29,15 +38,10 @@ void	*death_supervisor(void *arg)
 			diff = get_timestamp() - philo->times[i];
 			if (diff > philo->time_to_die / 1000 && !philo->done)
 			{
-				args = (t_args *)malloc(sizeof(t_args));
-				args->philo = philo;
-				args->id = i;
-				philo_state(DIED, args);
-				philo->died = 1;
+				shinegami_helper(&args, philo, i);
 				break ;
 			}
-			pthread_mutex_unlock(&philo->protect_eating[i]);
-			i++;
+			pthread_mutex_unlock(&philo->protect_eating[i++]);
 		}
 	}
 	if (philo->died)
