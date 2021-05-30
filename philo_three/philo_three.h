@@ -6,12 +6,12 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 16:33:35 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 17:22:36 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:24:34 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef philo_three_H
-# define philo_three_H
+#ifndef PHILO_THREE_H
+# define PHILO_THREE_H
 # define FORK_TAKEN 0
 # define EATING 1
 # define SLEEPING 2
@@ -47,24 +47,24 @@ typedef struct s_philosopher
 	int				number_of_times_to_eat;
 }	t_philosoper;
 
-typedef struct		s_args
+typedef struct s_args
 {
 	int				id;
 	t_philosoper	*philo;
 }	t_args;
-typedef enum	e_bool
+typedef enum e_bool
 {
 	false,
 	true
 }	t_bool;
 
 t_bool			is_number(t_string nbr);
-t_string		sema_name_gen();
+t_string		sema_name_gen(void);
 int				ft_atoi(t_string number);
 void			println(t_string str, int fd);
 void			ft_putnbr(long n);
-void 			ft_usleep(int span);
-long			get_timestamp();
+void			ft_usleep(int span);
+long			get_timestamp(void);
 void			philosophers_launcher(t_philosoper *philo, pid_t *pids);
 void			*philosophers(void *arg);
 void			*death_supervisor(void *arg);

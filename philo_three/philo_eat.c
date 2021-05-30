@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:12:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 17:23:53 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:22:43 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		philo_eat(t_args *args)
+void	philo_eat(t_args *args)
 {
 	int				id;
 	t_philosoper	*philo;

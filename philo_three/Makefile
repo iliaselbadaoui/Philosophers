@@ -1,4 +1,4 @@
-compile = gcc -Werror -Wall -Wextra
+compile = gcc -Werror -Wall -Wextra -g
 NAME = philo_three
 src = *.c
 inc = -Iphilo_three.h

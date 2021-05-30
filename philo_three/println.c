@@ -6,13 +6,13 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:48:26 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:27:03 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		println(t_string str, int fd)
+void	println(t_string str, int fd)
 {
 	while (*str)
 	{

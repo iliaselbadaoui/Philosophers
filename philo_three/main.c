@@ -6,14 +6,14 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 18:09:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 17:24:55 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:22:29 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 #include <signal.h>
 
-static t_bool check_args(int argc, t_string *argv)
+static t_bool	check_args(int argc, t_string *argv)
 {
 	if (argc > 6 || argc < 5)
 	{
@@ -50,13 +50,20 @@ static void	create_philosopher(int argc, t_string *argv, t_philosoper **philo)
 		(*philo)->number_of_times_to_eat = ft_atoi(argv[4]);
 	else
 		(*philo)->number_of_times_to_eat = -1;
-	(*philo)->threads = (pthread_t *)malloc(sizeof(pthread_t) * (*philo)->philo_num);
-	(*philo)->times = (long *)malloc(sizeof(long) * (*philo)->philo_num);
-	(*philo)->num_of_times_a_philo_ate = (int *)malloc(sizeof(int) * (*philo)->philo_num);
-	(*philo)->protect_eating = (sem_t **)malloc(sizeof(sem_t *) * (*philo)->philo_num);
-	(*philo)->wait_eat = (sem_t **)malloc(sizeof(sem_t *) * (*philo)->philo_num);
-	(*philo)->sem_names = (t_string *)malloc(sizeof(t_string) * (*philo)->philo_num);
-	(*philo)->sem_wait_names = (t_string *)malloc(sizeof(t_string) * (*philo)->philo_num);
+	(*philo)->threads = (pthread_t *)
+		malloc(sizeof(pthread_t) * (*philo)->philo_num);
+	(*philo)->times = (long *)
+		malloc(sizeof(long) * (*philo)->philo_num);
+	(*philo)->num_of_times_a_philo_ate = (int *)
+		malloc(sizeof(int) * (*philo)->philo_num);
+	(*philo)->protect_eating = (sem_t **)
+		malloc(sizeof(sem_t *) * (*philo)->philo_num);
+	(*philo)->wait_eat = (sem_t **)
+		malloc(sizeof(sem_t *) * (*philo)->philo_num);
+	(*philo)->sem_names = (t_string *)
+		malloc(sizeof(t_string) * (*philo)->philo_num);
+	(*philo)->sem_wait_names = (t_string *)
+		malloc(sizeof(t_string) * (*philo)->philo_num);
 }
 
 static void	init_values(t_philosoper *philo)
@@ -76,10 +83,12 @@ static void	init_values(t_philosoper *philo)
 	{
 		philo->sem_names[i] = sema_name_gen();
 		sem_unlink(philo->sem_names[i]);
-		philo->protect_eating[i] = sem_open(philo->sem_names[i], O_CREAT, 0777, 1);
+		philo->protect_eating[i]
+			= sem_open(philo->sem_names[i], O_CREAT, 0777, 1);
 		philo->sem_wait_names[i] = sema_name_gen();
 		sem_unlink(philo->sem_wait_names[i]);
-		philo->wait_eat[i] = sem_open(philo->sem_wait_names[i], O_CREAT, 0777, 0);
+		philo->wait_eat[i]
+			= sem_open(philo->sem_wait_names[i], O_CREAT, 0777, 0);
 		philo->times[i] = get_timestamp();
 		philo->num_of_times_a_philo_ate[i] = 0;
 		i++;

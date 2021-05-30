@@ -6,18 +6,18 @@
 /*   By: ielbadao <ielbadao@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 09:51:27 by ielbadao          #+#    #+#             */
-/*   Updated: 2021/05/30 16:13:10 by ielbadao         ###   ########.fr       */
+/*   Updated: 2021/05/30 18:27:11 by ielbadao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-static void		ft_putchar(char c)
+static void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void			ft_putnbr(long n)
+void	ft_putnbr(long n)
 {
 	long		nb;
 
